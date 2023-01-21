@@ -13,4 +13,10 @@
 
 - People today are becoming more and more conscious of their appearance, and many may even go on excessive diets in pursuit of a single aesthetic leading to an increase in body burden. This application evaluates the user's nutritional intake and can **helps the user to build a more healthy diet based on their body condition**, instead of pursuing an extreme diet that doesn't fit their own condition. 
 
+## User Stories:
 
+- As a user, I want to be able to create a new foodie diary and add a food item to my foodie diary.
+- As a user, I want to be able to view a list of food items in my foodie diary.
+- As a user, I want to be able to delete a food item from my foodie diary.
+- As a user, I want to be able to calculate my calories input for the food I added in my foodie diary.
+- As a user, I want to be able to input my height and weight and check whether my intake today meets the healthy requirement. 
