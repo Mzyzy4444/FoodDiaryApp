@@ -1,10 +1,16 @@
-# My Personal Project
+# Personal Project: Fit-Foodie
 
-## A subtitle
+## Diet Tracker Application
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+- This program is like a **food ledger**. It provides a platform for users to **record their everyday eating habits**, and they can use the built-in options to record the food they eat every day and its calories.
+  This application **evaluates the user's nutritional intake for the day** based on the food intake entered by the user as well as the height and weight entered by the user. If the intake is too low and too high, the user will be reminded to replenish the intake or control it.
 
-An example of text with **bold** and *italic* fonts.  
+
+
+- Anyone who wants to keep track of their eating habits, such as the need to control their dietary intake for fitness, can use this app.
+
+
+
+- People today are becoming more and more conscious of their appearance, and many may even go on excessive diets in pursuit of a single aesthetic leading to an increase in body burden. This application evaluates the user's nutritional intake and can **helps the user to build a more healthy diet based on their body condition**, instead of pursuing an extreme diet that doesn't fit their own condition. 
+
+
