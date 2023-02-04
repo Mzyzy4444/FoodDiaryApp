@@ -18,5 +18,4 @@
 - As a user, I want to be able to create a new foodie diary and add a food item to my foodie diary.
 - As a user, I want to be able to view a list of food items in my foodie diary.
 - As a user, I want to be able to delete a food item from my foodie diary.
-- As a user, I want to be able to calculate my calories input for the food I added in my foodie diary.
 - As a user, I want to be able to input my height and weight and check whether my intake today meets the healthy requirement. 
