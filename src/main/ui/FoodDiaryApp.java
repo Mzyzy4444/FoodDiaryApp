@@ -3,11 +3,14 @@ package ui;
 import model.FoodDiary;
 import model.FoodItem;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 // Food Diary application
 public class FoodDiaryApp {
     private FoodDiary foodDiary;
+    private ArrayList<String> nameList;
+    private ArrayList<String> typeList;
     private String userName;
     private Scanner input;
     private int weight;
@@ -86,19 +89,20 @@ public class FoodDiaryApp {
     }
 
     // TODO: set gender notes
-    // EFFECTS: display the initoal seting selection
+    // EFFECTS: display the initial setting selection
     private void displaySetting() {
         System.out.println("\nWelcome to Fit-Foodie!");
         System.out.println("\nplease enter the user name: ");
-        userName = input.next() + input.nextLine();
+        foodDiary.setName(input.next() + input.nextLine());
         System.out.println("\nplease enter your weight (in kilograms): ");
-        weight = input.nextInt();
+        foodDiary.setWeight(input.nextInt());
         System.out.println("\nplease enter your height (in center-meters): ");
-        height = input.nextInt();
+        foodDiary.setHeight(input.nextInt());
         System.out.println("\nplease enter your age : ");
-        age = input.nextInt();
-        System.out.println("\nplease enter your gender (male or female, please note that the gender here is only based on your ): ");
-        sex = input.next() + input.nextLine();
+        foodDiary.setAge(input.nextInt());
+        System.out.println("\nplease enter your gender (male or female) "
+                + "// Please note that the gender here is only referring to your physical biology. ");
+        foodDiary.setSex(input.next() + input.nextLine());
     }
 
     //  EFFECTS: display menu options
@@ -206,7 +210,15 @@ public class FoodDiaryApp {
     // EFFECTS: print out what's in the current diary
     private void printOut() {
         System.out.println("The food you recorded in your foodie-diary are: ");
+//        for (String name: nameList) {
+//            System.out.println(name);
+//        }
+//        System.out.println("The corresponding food type for each item in the diary are: ");
+//        for (String type: typeList) {
+//            System.out.println(type);
+//        }
         foodDiary.printDiary();
+
     }
 
 

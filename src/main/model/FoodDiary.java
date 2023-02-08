@@ -1,18 +1,22 @@
 package model;
 
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 //Represents a food diary, with records of foods eaten every day
 public class FoodDiary {
     private ArrayList<FoodItem> foodDiary;
+//    private ArrayList<String> nameList;
+//    private ArrayList<String> typeList;
     private int weight;
     private int height;
     private int age;
     private String sex;
+    //TODO
     private String userName;
     private FoodItem foodItem;
-    private float idealIntake;
-    private float idealIntake2;
+//    private int idealIntake;
+//    private int idealIntake2;
 
 
     /*
@@ -34,13 +38,15 @@ public class FoodDiary {
         foodDiary.add(foodItem);
     }
 
-    //Requires:
+    //Requires: The food item must be in the food diary before;
+    //          only delete one food item at a time
     //Modifies: this
     // Effects: delete a food item from the diary
     public void deleteFoodItem(String foodName) {
         for (FoodItem foodItem: foodDiary) {
-            if (foodName == foodItem.getFoodName()) {
+            if (foodName.equals(foodItem.getFoodName())) {
                 foodDiary.remove(foodItem);
+                break;
             }
         }
     }
@@ -48,22 +54,23 @@ public class FoodDiary {
 
     // EFFECTS: print out all the food items in the current diary
     public void printDiary() {
+
         for (FoodItem foodItem: foodDiary) {
-            System.out.println(foodItem.getFoodName() + " ==> " + foodItem.getFoodType().toString().toLowerCase());
+           System.out.println(foodItem.getFoodName() + " ==> " + foodItem.getFoodType().toString().toLowerCase());
+//            nameList.add(foodItem.getFoodName());
+//            typeList.add(foodItem.getFoodType().toString().toLowerCase());
         }
     }
 
     // EFFECTS: calculate the ideal calorie intake depends on the gender
-    public float calculate() {
+    public int calculate() {
         if (this.getSex() == "male") {
-            idealIntake = (float) ((67 + (14 * this.getWeight())
-                    + (5 * this.getHeight()))
-                    / (7 * this.getAge()));
+            int idealIntake = (int) (1.9 * ((10 * this.getWeight())
+                    + (6.25 * this.getHeight()) - (5 * this.getAge()) + 5));
             return idealIntake;
         } else {
-            idealIntake2 = (float) ((655 + (9 * this.getWeight())
-                                + (2 * this.getHeight()))
-                                / (5 * this.getAge()));
+            int idealIntake2 = (int) (1.9 * ((10 * this.getWeight())
+                    + (6.25 * this.getHeight()) - (5 * this.getAge()) - 161));
             return idealIntake2;
         }
     }
@@ -88,6 +95,30 @@ public class FoodDiary {
 
     public String getSex() {
         return sex;
+    }
+
+    public int getSize() {
+        return foodDiary.size();}
+
+    // setters
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
 
