@@ -5,7 +5,7 @@ public class FoodItem {
     private FoodType foodType;
 
     public enum FoodType {
-        FRUIT, VEGETABLE, MEAT, SEAFOOD, DAIRY, GRAINS, NUT, SNACKS, BEVERAGES
+        FRUIT, VEGETABLE, MEAT, DAIRY, GRAINS, SNACKS, BEVERAGES
     }
 
     public FoodItem(String foodName, FoodType foodType) {
@@ -14,12 +14,12 @@ public class FoodItem {
     }
 
     //getters
-    public String getName() {
+    public String getFoodName() {
         return foodItem;
     }
 
     //getters
-    public FoodType getType() {
+    public FoodType getFoodType() {
         return foodType;
     }
 
