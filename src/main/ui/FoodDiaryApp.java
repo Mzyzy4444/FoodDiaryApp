@@ -210,6 +210,7 @@ public class FoodDiaryApp {
     // EFFECTS: print out what's in the current diary
     private void printOut() {
         System.out.println("The food you recorded in your foodie-diary are: ");
+        foodDiary.printDiary();
 //        for (String name: nameList) {
 //            System.out.println(name);
 //        }
@@ -217,7 +218,7 @@ public class FoodDiaryApp {
 //        for (String type: typeList) {
 //            System.out.println(type);
 //        }
-        foodDiary.printDiary();
+        //foodDiary.printDiary();
 
     }
 

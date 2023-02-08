@@ -26,7 +26,7 @@ class FoodDiaryTest {
 
     @BeforeEach
     public void setup() {
-        fdZoey = new FoodDiary("Zoey", 50, 171, 18, "female");
+        fdZoey = new FoodDiary("Zoey", 48, 171, 18, "female");
         fdSkye = new FoodDiary("Skye", 72, 178, 18, "male");
         fdJeffery = new FoodDiary("Jeffery",72,176,20,"male");
 //        fd = new ArrayList<FoodItem>();
@@ -37,7 +37,7 @@ class FoodDiaryTest {
     @Test
     public void testConstructorFoodDiary() {
         assertEquals("Zoey", fdZoey.getName());
-        assertEquals(50, fdZoey.getWeight());
+        assertEquals(48, fdZoey.getWeight());
         assertEquals(171, fdZoey.getHeight());
         assertEquals(18, fdZoey.getAge());
         assertEquals("female", fdZoey.getSex());
@@ -73,14 +73,19 @@ class FoodDiaryTest {
         assertEquals(0,fdSkye.getSize());
     }
 
-    @Test
-    public void testPrintDiary() {}
+    //TODO: print test
+//    @Test
+//    public void testPrintDiary() {}
 
     @Test
-    public void testCalculateMale() {}
+    public void testCalculateMale() {
+        assertEquals(3320, fdSkye.calculate());
+    }
 
     @Test
-    public void testCalculateFemale() {}
+    public void testCalculateFemale() {
+        assertEquals(2465,fdZoey.calculate());
+    }
 
 
 

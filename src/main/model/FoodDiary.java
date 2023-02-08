@@ -2,11 +2,12 @@ package model;
 
 import java.util.ArrayList;
 import java.math.BigDecimal;
+import java.util.List;
 
 //Represents a food diary, with records of foods eaten every day
 public class FoodDiary {
     private ArrayList<FoodItem> foodDiary;
-//    private ArrayList<String> nameList;
+    private ArrayList<String> nameList;
 //    private ArrayList<String> typeList;
     private int weight;
     private int height;
@@ -56,10 +57,11 @@ public class FoodDiary {
     public void printDiary() {
 
         for (FoodItem foodItem: foodDiary) {
-           System.out.println(foodItem.getFoodName() + " ==> " + foodItem.getFoodType().toString().toLowerCase());
-//            nameList.add(foodItem.getFoodName());
+            System.out.println(foodItem.getFoodName() + "==> " + foodItem.getFoodType().toString().toLowerCase());
+            // nameList.add(foodItem.getFoodName());
 //            typeList.add(foodItem.getFoodType().toString().toLowerCase());
         }
+     //   return nameList;
     }
 
     // EFFECTS: calculate the ideal calorie intake depends on the gender
@@ -98,7 +100,8 @@ public class FoodDiary {
     }
 
     public int getSize() {
-        return foodDiary.size();}
+        return foodDiary.size();
+    }
 
     // setters
     public void setWeight(int weight) {
