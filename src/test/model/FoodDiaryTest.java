@@ -28,7 +28,7 @@ class FoodDiaryTest {
     public void setup() {
         fdZoey = new FoodDiary("Zoey", 48, 171, 18, "female");
         fdSkye = new FoodDiary("Skye", 72, 178, 18, "male");
-        fdJeffery = new FoodDiary("Jeffery",72,176,20,"male");
+        fdJeffery = new FoodDiary("Jeffery",65,176,20,"male");
 //        fd = new ArrayList<FoodItem>();
         apple = new FoodItem("Apple", FoodItem.FoodType.FRUIT);
         chicken = new FoodItem("Chicken",FoodItem.FoodType.MEAT);
@@ -73,6 +73,13 @@ class FoodDiaryTest {
         assertEquals(0,fdSkye.getSize());
     }
 
+    @Test
+    public void testDeleteFoodItemEmpty() {
+        assertEquals(0, fdSkye.getSize());
+        fdSkye.deleteFoodItem("Apple");
+        assertEquals(0,fdSkye.getSize());
+    }
+
     //TODO: print test
 //    @Test
 //    public void testPrintDiary() {}
@@ -86,6 +93,37 @@ class FoodDiaryTest {
     public void testCalculateFemale() {
         assertEquals(2465,fdZoey.calculate());
     }
+
+    @Test
+    public void testSetWeight() {
+        fdJeffery.setWeight(100);
+        assertEquals(100,fdJeffery.getWeight());
+    }
+
+    @Test
+    public void testSetName() {
+        fdSkye.setName("Joker");
+        assertEquals("Joker",fdSkye.getName());
+    }
+
+    @Test
+    public void testSetHeight() {
+        fdJeffery.setHeight(150);
+        assertEquals(150,fdJeffery.getHeight());
+    }
+
+    @Test
+    public void testSetAge() {
+        fdJeffery.setAge(18);
+        assertEquals(18,fdJeffery.getAge());
+    }
+
+    @Test
+    public void testSetSex() {
+        fdJeffery.setSex("female");
+        assertEquals("female",fdJeffery.getSex());
+    }
+
 
 
 
