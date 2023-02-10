@@ -3,7 +3,7 @@
 ## Diet Tracker Application
 
 - This program is like a **food ledger**. It provides a platform for users to **record their everyday eating habits**, and they can use the built-in options to record the food they eat every day and its calories.
-  This application **evaluates the user's nutritional intake for the day** based on the food intake entered by the user as well as the height and weight entered by the user. If the intake is too low and too high, the user will be reminded to replenish the intake or control it.
+  This application **evaluates the user's nutritional intake for the day** based on the food intake entered by the user as well as the height and weight entered by the user. 
 
 
 
@@ -19,4 +19,4 @@
 - As a userm I want to be able to add a food item to my foodie diary.
 - As a user, I want to be able to view a list of food items in my foodie diary based on the food type.
 - As a user, I want to be able to delete a food item from my foodie diary.
-- As a user, I want to be able to input my height and weight and check whether my intake today meets the healthy requirement. 
+- As a user, I want to be able to input my height, weight, gender and age and check whether my intake today meets the healthy requirement. 

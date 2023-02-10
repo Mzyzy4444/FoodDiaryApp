@@ -63,6 +63,14 @@ public class FoodDiaryTest {
     }
 
     @Test
+    public void testDeleteFoodItemNotInDiary() {
+        fdSkye.addFoodItem(apple);
+        assertEquals(1, fdSkye.getSize());
+        fdSkye.deleteFoodItem("Prange");
+        assertEquals(1,fdSkye.getSize());
+    }
+
+    @Test
     public void testDeleteFoodItemEmpty() {
         assertEquals(0, fdSkye.getSize());
         fdSkye.deleteFoodItem("Apple");
