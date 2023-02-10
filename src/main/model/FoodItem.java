@@ -8,6 +8,8 @@ public class FoodItem {
         FRUIT, VEGETABLE, MEAT, DAIRY, GRAINS, SNACKS, BEVERAGES
     }
 
+    // REQUIRES: food type must be in the FoodType enum
+    // EFFECTS: construct a food item with given foodName and food type
     public FoodItem(String foodName, FoodType foodType) {
         foodItem = foodName;
         this.foodType = foodType;

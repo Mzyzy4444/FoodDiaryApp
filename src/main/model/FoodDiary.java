@@ -1,23 +1,17 @@
 package model;
 
 import java.util.ArrayList;
-import java.math.BigDecimal;
 import java.util.List;
 
 //Represents a food diary, with records of foods eaten every day
 public class FoodDiary {
     private ArrayList<FoodItem> foodDiary;
-    private ArrayList<String> nameList;
-//    private ArrayList<String> typeList;
     private int weight;
     private int height;
     private int age;
     private String sex;
-    //TODO
     private String userName;
-    private FoodItem foodItem;
-//    private int idealIntake;
-//    private int idealIntake2;
+
 
 
     /*
@@ -54,17 +48,16 @@ public class FoodDiary {
 
 
     // EFFECTS: print out all the food items in the current diary
-    public void printDiary() {
-
+    public List<String> printDiaryViewList() {
+        List<String> viewList = new ArrayList<String>();
         for (FoodItem foodItem: foodDiary) {
-            System.out.println(foodItem.getFoodName() + "==> " + foodItem.getFoodType().toString().toLowerCase());
-            // nameList.add(foodItem.getFoodName());
-//            typeList.add(foodItem.getFoodType().toString().toLowerCase());
+            String s = foodItem.getFoodName() + " ==> " + foodItem.getFoodType().toString().toLowerCase();
+            viewList.add(s);
         }
-     //   return nameList;
+        return viewList;
     }
 
-    // EFFECTS: calculate the ideal calorie intake depends on the gender
+    // EFFECTS: calculate the ideal calorie intake based on the gender
     public int calculate() {
         if (this.getSex() == "male") {
             int idealIntake = (int) (1.9 * ((10 * this.getWeight())

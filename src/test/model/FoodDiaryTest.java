@@ -2,26 +2,15 @@ package model;
 
 
 import org.junit.jupiter.api.BeforeEach;
-import model.FoodDiary;
-import model.FoodItem;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class FoodDiaryTest {
+public class FoodDiaryTest {
     private FoodDiary fdZoey;
     private FoodDiary fdSkye;
     private FoodDiary fdJeffery;
-    private double weight;
-    private double height;
-    private double age;
-    private String sex;
-    private String userName;
     private FoodItem apple;
     private FoodItem chicken;
-    private double idealIntake;
 
 
     @BeforeEach
@@ -80,9 +69,18 @@ class FoodDiaryTest {
         assertEquals(0,fdSkye.getSize());
     }
 
-    //TODO: print test
-//    @Test
-//    public void testPrintDiary() {}
+    @Test
+    public void testPrintDiaryEmpty() {
+        assertEquals(0, fdZoey.printDiaryViewList().size());
+    }
+
+    @Test
+    public void testPrintDiaryNotEmpty() {
+        assertEquals(0, fdZoey.printDiaryViewList().size());
+        fdZoey.addFoodItem(apple);
+        fdZoey.addFoodItem(chicken);
+        assertEquals(2,fdZoey.printDiaryViewList().size());
+    }
 
     @Test
     public void testCalculateMale() {

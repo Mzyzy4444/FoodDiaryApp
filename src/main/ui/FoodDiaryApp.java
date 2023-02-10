@@ -9,14 +9,13 @@ import java.util.Scanner;
 // Food Diary application
 public class FoodDiaryApp {
     private FoodDiary foodDiary;
-    private ArrayList<String> nameList;
-    private ArrayList<String> typeList;
-    private String userName;
     private Scanner input;
+    private String userName;
     private int weight;
     private int height;
     private int age;
     private String sex;
+
 
     //EFFECTS : runs the food diary app
     public FoodDiaryApp() {
@@ -88,27 +87,25 @@ public class FoodDiaryApp {
 
     }
 
-    // TODO: set gender notes
     // EFFECTS: display the initial setting selection
     private void displaySetting() {
         System.out.println("\nWelcome to Fit-Foodie!");
-        System.out.println("\nplease enter the user name: ");
+        System.out.println("\nPlease enter the user name: ");
         foodDiary.setName(input.next() + input.nextLine());
-        System.out.println("\nplease enter your weight (in kilograms): ");
+        System.out.println("\nPlease enter your weight (in kilograms): ");
         foodDiary.setWeight(input.nextInt());
-        System.out.println("\nplease enter your height (in center-meters): ");
+        System.out.println("\nPlease enter your height (in center-meters): ");
         foodDiary.setHeight(input.nextInt());
-        System.out.println("\nplease enter your age : ");
+        System.out.println("\nPlease enter your age : ");
         foodDiary.setAge(input.nextInt());
-        System.out.println("\nplease enter your gender (male or female) "
+        System.out.println("\nPlease enter your gender (male or female) "
                 + "// Please note that the gender here is only referring to your physical biology. ");
         foodDiary.setSex(input.next() + input.nextLine());
     }
 
     //  EFFECTS: display menu options
     private void displayMenu() {
-//        System.out.println("\nWelcome to Fit-Foodie!");
-        System.out.println("\nPlease select which kinds of food you want record:");
+        System.out.println("\nPlease select which kind of food you want record:");
         System.out.println("\nf -> Fruit");
         System.out.println("\nv -> Vegetable");
         System.out.println("\nm -> Meat (including seafood)");
@@ -122,6 +119,7 @@ public class FoodDiaryApp {
         System.out.println("\nq -> quit");
     }
 
+    // MODIFIES: foodDiary
     // EFFECTS : add the fruit given to the food diary
     private void addFruit() {
         System.out.println("Please enter the fruit you want to record: ");
@@ -132,6 +130,7 @@ public class FoodDiaryApp {
         System.out.println("Fruit recorded");
     }
 
+    // MODIFIES: foodDiary
     // EFFECTS : add the vegetable given to the food diary
     private void addVegetable() {
         System.out.println("Please enter the vegetable you want to record: ");
@@ -142,6 +141,7 @@ public class FoodDiaryApp {
         System.out.println("Vegetable recorded");
     }
 
+    // MODIFIES: foodDiary
     // EFFECTS : add the meat given to the food diary
     private void addMeat() {
         System.out.println("Please enter the meat you want to record: ");
@@ -152,6 +152,7 @@ public class FoodDiaryApp {
         System.out.println("meat recorded");
     }
 
+    // MODIFIES: foodDiary
     // EFFECTS : add the beverage given to the food diary
     private void addBeverages() {
         System.out.println("Please enter the beverage you want to record: ");
@@ -162,6 +163,7 @@ public class FoodDiaryApp {
         System.out.println("Beverage recorded");
     }
 
+    // MODIFIES: foodDiary
     // EFFECTS : add the snack given to the food diary
     private void addSnacks() {
         System.out.println("Please enter the snack you want to record: ");
@@ -172,7 +174,7 @@ public class FoodDiaryApp {
         System.out.println("snack recorded");
     }
 
-
+    // MODIFIES: foodDiary
     // EFFECTS : add the grains given to the food diary
     private void addGrains() {
         System.out.println("Please enter the grains you want to record: ");
@@ -183,6 +185,7 @@ public class FoodDiaryApp {
         System.out.println("Grains recorded");
     }
 
+    // MODIFIES: foodDiary
     // EFFECTS : add the diary given to the food diary
     private void addDairy() {
         System.out.println("Please enter the dairy you want to record: ");
@@ -193,7 +196,7 @@ public class FoodDiaryApp {
         System.out.println("Dairy recorded");
     }
 
-    // MODIFIES: this
+    // MODIFIES: foodDiary
     // EFFECTS : delete the food item given from the food diary
     private void deleteItem() {
         System.out.println("Please enter the food you want to delete: ");
@@ -203,22 +206,17 @@ public class FoodDiaryApp {
 
     //EFFECTS: print out the ideal calories intake
     private void calculateCalories() {
-        System.out.println("The ideal calorie intake for you is " + foodDiary.calculate());
+        System.out.println("The ideal calorie intake for you is " + foodDiary.calculate() + " kcal");
     }
 
 
     // EFFECTS: print out what's in the current diary
     private void printOut() {
         System.out.println("The food you recorded in your foodie-diary are: ");
-        foodDiary.printDiary();
-//        for (String name: nameList) {
-//            System.out.println(name);
-//        }
-//        System.out.println("The corresponding food type for each item in the diary are: ");
-//        for (String type: typeList) {
-//            System.out.println(type);
-//        }
-        //foodDiary.printDiary();
+        //System.out.println(foodDiary.printDiary());
+        for (String element : foodDiary.printDiaryViewList()) {
+            System.out.println(element);
+        }
 
     }
 
