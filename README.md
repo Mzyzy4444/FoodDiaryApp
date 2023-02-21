@@ -16,7 +16,10 @@
 ## User Stories:
 
 - As a user, I want to be able to create a new foodie diary.
-- As a userm I want to be able to add a food item to my foodie diary.
+- As a user, I want to be able to add a food item to my foodie diary.
 - As a user, I want to be able to view a list of food items in my foodie diary based on the food type.
 - As a user, I want to be able to delete a food item from my foodie diary.
 - As a user, I want to be able to input my height, weight, gender and age and check whether my intake today meets the healthy requirement. 
+- As a user, I want to be able to save my food diary to file (if I choose).
+- As a user, I want to be able to be able to load my food diary from file (if I so choose).
+
