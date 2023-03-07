@@ -12,12 +12,12 @@ import org.json.*;
 
 public class JsonReader {
     private String source;
-//    private FoodDiary foodDiary;
-//    private String userName;
-//    private int weight;
-//    private int height;
-//    private int age;
-//    private String sex;
+
+    private String userName;
+    private int weight;
+    private int height;
+    private int age;
+    private String sex;
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
@@ -61,7 +61,7 @@ public class JsonReader {
     // MODIFIES: fd
     // EFFECTS: parses food items from JSON object and adds them to workroom
     private void addFoodItems(FoodDiary fd, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("fd");
+        JSONArray jsonArray = jsonObject.getJSONArray("food items");
         for (Object json : jsonArray) {
             JSONObject nextFoodie = (JSONObject) json;
             addFoodItem(fd, nextFoodie);

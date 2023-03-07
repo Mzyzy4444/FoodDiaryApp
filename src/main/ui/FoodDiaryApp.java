@@ -137,6 +137,8 @@ public class FoodDiaryApp {
         System.out.println("\tload -> load work room from file");
     }
 
+    
+
     // MODIFIES: foodDiary
     // EFFECTS : add the fruit given to the food diary
     private void addFruit() {

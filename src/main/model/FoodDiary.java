@@ -129,8 +129,12 @@ public class FoodDiary implements Writable{
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name", userName);
+        json.put("userName", userName);
         json.put("food items", foodiesToJson());
+        json.put("weight", weight);
+        json.put("height", height);
+        json.put("age", age);
+        json.put("sex", sex);
         return json;
     }
 
