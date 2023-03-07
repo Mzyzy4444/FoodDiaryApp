@@ -3,8 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Represents a food diary, with records of foods eaten every day
-public class FoodDiary {
+public class FoodDiary implements Writable{
     private ArrayList<FoodItem> foodDiary;
     private int weight;
     private int height;
@@ -117,12 +121,27 @@ public class FoodDiary {
         this.sex = sex;
     }
 
+    public ArrayList<FoodItem> getDiary() {
+        return this.foodDiary;
+    }
 
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", userName);
+        json.put("food items", foodiesToJson());
+        return json;
+    }
 
+    // EFFECTS: returns food item in this workroom as a JSON array
+    private JSONArray foodiesToJson() {
+        JSONArray jsonArray = new JSONArray();
 
+        for (FoodItem f : foodDiary) {
+            jsonArray.put(f.toJson());
+        }
 
-
-
-
+        return jsonArray;
+    }
 }

@@ -2,12 +2,17 @@ package ui;
 
 import model.FoodDiary;
 import model.FoodItem;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // Food Diary application
 public class FoodDiaryApp {
+    private static final String JSON_STORE = "./data/food-diary.json";
     private FoodDiary foodDiary;
     private Scanner input;
     private String userName;
@@ -15,10 +20,16 @@ public class FoodDiaryApp {
     private int height;
     private int age;
     private String sex;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
 
     //EFFECTS : runs the food diary app
-    public FoodDiaryApp() {
+    public FoodDiaryApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        foodDiary = new FoodDiary("Zoey",weight,height,age,sex);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runFoodDiaryApp();
     }
 
@@ -50,6 +61,7 @@ public class FoodDiaryApp {
     // MODIFIES: this
     // EFFECTS: process user command
     // and jump to the selected categories
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void processCommand(String command) {
         if (command.equals("f")) {
             addFruit();
@@ -71,6 +83,10 @@ public class FoodDiaryApp {
             deleteItem();
         } else if (command.equals("c")) {
             calculateCalories();
+        } else if (command.equals("save")) {
+            saveFoodDiary();
+        } else if (command.equals("load")) {
+            loadFoodDiary();
         } else {
             System.out.println("Sorry, we are unable to find this selection");
         }
@@ -117,6 +133,8 @@ public class FoodDiaryApp {
         System.out.println("\ndelete -> delete food item in my diary");
         System.out.println("\nc -> calculate the appropriate calories based on your body condition");
         System.out.println("\nq -> quit");
+        System.out.println("\tsave -> save work room to file");
+        System.out.println("\tload -> load work room from file");
     }
 
     // MODIFIES: foodDiary
@@ -218,6 +236,29 @@ public class FoodDiaryApp {
             System.out.println(element);
         }
 
+    }
+
+    // EFFECTS: saves the food diary to file
+    private void saveFoodDiary() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(foodDiary);
+            jsonWriter.close();
+            System.out.println("Saved " + foodDiary.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads food diary from file
+    private void loadFoodDiary() {
+        try {
+            foodDiary = jsonReader.read();
+            System.out.println("Loaded " + foodDiary.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 

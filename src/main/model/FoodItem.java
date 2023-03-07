@@ -1,11 +1,22 @@
 package model;
 
-public class FoodItem {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class FoodItem implements Writable {
     private String foodItem;
     private FoodType foodType;
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("food name", foodItem);
+        json.put("food type", foodType);
+        return json;
+    }
+
     public enum FoodType {
-        FRUIT, VEGETABLE, MEAT, DAIRY, GRAINS, SNACKS, BEVERAGES
+        FRUIT, VEGETABLE, MEAT, SNACKS, BEVERAGES
     }
 
     // REQUIRES: food type must be in the FoodType enum
