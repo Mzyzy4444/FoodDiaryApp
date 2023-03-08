@@ -85,8 +85,8 @@ public class FoodDiaryApp {
             calculateCalories();
         } else if (command.equals("save")) {
             saveFoodDiary();
-        } else if (command.equals("load")) {
-            loadFoodDiary();
+//        } else if (command.equals("load")) {
+//            loadFoodDiary();
         } else {
             System.out.println("Sorry, we are unable to find this selection");
         }
@@ -106,17 +106,24 @@ public class FoodDiaryApp {
     // EFFECTS: display the initial setting selection
     private void displaySetting() {
         System.out.println("\nWelcome to Fit-Foodie!");
-        System.out.println("\nPlease enter the user name: ");
-        foodDiary.setName(input.next() + input.nextLine());
-        System.out.println("\nPlease enter your weight (in kilograms): ");
-        foodDiary.setWeight(input.nextInt());
-        System.out.println("\nPlease enter your height (in center-meters): ");
-        foodDiary.setHeight(input.nextInt());
-        System.out.println("\nPlease enter your age : ");
-        foodDiary.setAge(input.nextInt());
-        System.out.println("\nPlease enter your gender (male or female) "
-                + "// Please note that the gender here is only referring to your physical biology. ");
-        foodDiary.setSex(input.next() + input.nextLine());
+        System.out.println("\nDo you choose to load the history data?");
+        System.out.println("\nyes -> load from history data ");
+        System.out.println("\nno -> start a new food diary ");
+        if ((input.next() + input.nextLine()).equals("yes")) {
+            loadFoodDiary();
+        } else {
+            System.out.println("\nPlease enter the user name: ");
+            foodDiary.setName(input.next() + input.nextLine());
+            System.out.println("\nPlease enter your weight (in kilograms): ");
+            foodDiary.setWeight(input.nextInt());
+            System.out.println("\nPlease enter your height (in center-meters): ");
+            foodDiary.setHeight(input.nextInt());
+            System.out.println("\nPlease enter your age : ");
+            foodDiary.setAge(input.nextInt());
+            System.out.println("\nPlease enter your gender (male or female) "
+                    + "// Please note that the gender here is only referring to your physical biology. ");
+            foodDiary.setSex(input.next() + input.nextLine());
+        }
     }
 
     //  EFFECTS: display menu options
@@ -133,8 +140,8 @@ public class FoodDiaryApp {
         System.out.println("\ndelete -> delete food item in my diary");
         System.out.println("\nc -> calculate the appropriate calories based on your body condition");
         System.out.println("\nq -> quit");
-        System.out.println("\tsave -> save work room to file");
-        System.out.println("\tload -> load work room from file");
+        System.out.println("\nsave -> save food diary to file");
+        //System.out.println("\tload -> load food diary from file");
     }
 
 
