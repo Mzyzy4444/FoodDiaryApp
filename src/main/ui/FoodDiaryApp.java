@@ -137,7 +137,7 @@ public class FoodDiaryApp {
         System.out.println("\tload -> load work room from file");
     }
 
-    
+
 
     // MODIFIES: foodDiary
     // EFFECTS : add the fruit given to the food diary
@@ -232,7 +232,9 @@ public class FoodDiaryApp {
 
     // EFFECTS: print out what's in the current diary
     private void printOut() {
-        System.out.println("The food you recorded in your foodie-diary are: ");
+        System.out.println("The food diary for " + foodDiary.getName() + "(" + foodDiary.getSex() + "), "
+                + foodDiary.getWeight() + " kg, " + foodDiary.getHeight() + " cm, " + foodDiary.getAge() + " years old");
+        System.out.println("The food items recorded in " + foodDiary.getName() + "'s " + "foodie-diary are: ");
         //System.out.println(foodDiary.printDiary());
         for (String element : foodDiary.printDiaryViewList()) {
             System.out.println(element);

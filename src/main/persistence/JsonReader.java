@@ -68,16 +68,6 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: fd
-    // EFFECTS: parses food from JSON object and adds it to workroom
-//    private void addFoodItem(FoodDiary fd, JSONObject jsonObject) {
-//        String foodItem = jsonObject.getString("fd");
-//        String foodTypeString = jsonObject.getString("FoodType");
-//        FoodItem.FoodType foodType = FoodItem.FoodType.valueOf(foodTypeString);
-//
-//        FoodItem foodie = new FoodItem(foodItem, foodType);
-//        fd.addFoodItem(foodie);
-//    }
 
     private void addFoodItem(FoodDiary fd, JSONObject jsonObject) {
         String foodItem = jsonObject.getString("food name");
