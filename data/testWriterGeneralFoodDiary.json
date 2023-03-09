@@ -1,0 +1,11 @@
+{
+    "food items": [{
+        "food type": "VEGETABLE",
+        "food name": "tomato"
+    }],
+    "sex": "male",
+    "weight": 75,
+    "userName": "Jeffrey",
+    "age": 20,
+    "height": 176
+}

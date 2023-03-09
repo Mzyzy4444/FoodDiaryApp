@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -8,7 +9,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 //Represents a food diary, with records of foods eaten every day
-public class FoodDiary implements Writable{
+public class FoodDiary implements Writable {
     private ArrayList<FoodItem> foodDiary;
     private int weight;
     private int height;
@@ -17,11 +18,10 @@ public class FoodDiary implements Writable{
     private String userName;
 
 
-
     /*
     Effect: creates an empty diary with userName given
      */
-    public FoodDiary(String userName, int weight, int height,int age,String sex) {
+    public FoodDiary(String userName, int weight, int height, int age, String sex) {
         foodDiary = new ArrayList<FoodItem>();
         this.userName = userName;
         this.weight = weight;
@@ -37,12 +37,17 @@ public class FoodDiary implements Writable{
         foodDiary.add(foodItem);
     }
 
+    // EFFECTS: returns an unmodifiable list of thingies in this food items
+    public List<FoodItem> getFoodItems() {
+        return Collections.unmodifiableList(foodDiary);
+    }
+
     //Requires: The food item must be in the food diary before;
     //          only delete one food item at a time
     //Modifies: this
     // Effects: delete a food item from the diary
     public void deleteFoodItem(String foodName) {
-        for (FoodItem foodItem: foodDiary) {
+        for (FoodItem foodItem : foodDiary) {
             if (foodName.equals(foodItem.getFoodName())) {
                 foodDiary.remove(foodItem);
                 break;
@@ -54,7 +59,7 @@ public class FoodDiary implements Writable{
     // EFFECTS: print out all the food items in the current diary
     public List<String> printDiaryViewList() {
         List<String> viewList = new ArrayList<String>();
-        for (FoodItem foodItem: foodDiary) {
+        for (FoodItem foodItem : foodDiary) {
             String s = foodItem.getFoodName() + " ==> " + foodItem.getFoodType().toString().toLowerCase();
             viewList.add(s);
         }
@@ -72,6 +77,11 @@ public class FoodDiary implements Writable{
                     + (6.25 * this.getHeight()) - (5 * this.getAge()) - 161));
             return idealIntake2;
         }
+    }
+
+    // EFFECTS: returns number of food items in this food diary
+    public int numFoodItems() {
+        return foodDiary.size();
     }
 
 
@@ -121,10 +131,6 @@ public class FoodDiary implements Writable{
         this.sex = sex;
     }
 
-    public ArrayList<FoodItem> getDiary() {
-        return this.foodDiary;
-    }
-
 
     @Override
     public JSONObject toJson() {
@@ -138,7 +144,7 @@ public class FoodDiary implements Writable{
         return json;
     }
 
-    // EFFECTS: returns food item in this workroom as a JSON array
+    // EFFECTS: returns food item in this food diary as a JSON array
     private JSONArray foodiesToJson() {
         JSONArray jsonArray = new JSONArray();
 

@@ -1,8 +1,14 @@
 {
-    "food items": [{
-        "food type": "FRUIT",
-        "food name": "banana"
-    }],
+    "food items": [
+        {
+            "food type": "BEVERAGES",
+            "food name": "sprite"
+        },
+        {
+            "food type": "VEGETABLE",
+            "food name": "tomato"
+        }
+    ],
     "sex": "female",
     "weight": 50,
     "userName": "Zoey",
