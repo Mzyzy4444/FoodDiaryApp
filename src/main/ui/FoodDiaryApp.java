@@ -27,7 +27,7 @@ public class FoodDiaryApp {
     //EFFECTS : runs the food diary app
     public FoodDiaryApp() throws FileNotFoundException {
         input = new Scanner(System.in);
-        foodDiary = new FoodDiary("Zoey",weight,height,age,sex);
+        foodDiary = new FoodDiary("Zoey", weight, height, age, sex);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runFoodDiaryApp();
@@ -96,7 +96,7 @@ public class FoodDiaryApp {
     //MODIFIES : this
     // EFFECTS : initialized diary
     private void init() {
-        foodDiary = new FoodDiary(userName,weight,height,age,sex);
+        foodDiary = new FoodDiary(userName, weight, height, age, sex);
         input = new Scanner(System.in);
         input.useDelimiter("\n");
         displaySetting();
@@ -143,7 +143,6 @@ public class FoodDiaryApp {
         System.out.println("\nsave -> save food diary to file");
         //System.out.println("\tload -> load food diary from file");
     }
-
 
 
     // MODIFIES: foodDiary
@@ -239,8 +238,10 @@ public class FoodDiaryApp {
 
     // EFFECTS: print out what's in the current diary
     private void printOut() {
-        System.out.println("The food diary for " + foodDiary.getName() + "(" + foodDiary.getSex() + "), "
-                + foodDiary.getWeight() + " kg, " + foodDiary.getHeight() + " cm, " + foodDiary.getAge() + " years old");
+        System.out.println("The food diary for " + foodDiary.getName()
+                + "(" + foodDiary.getSex() + "), "
+                + foodDiary.getWeight() + " kg, " + foodDiary.getHeight()
+                + " cm, " + foodDiary.getAge() + " years old");
         System.out.println("The food items recorded in " + foodDiary.getName() + "'s " + "foodie-diary are: ");
         //System.out.println(foodDiary.printDiary());
         for (String element : foodDiary.printDiaryViewList()) {
@@ -271,7 +272,6 @@ public class FoodDiaryApp {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
-
 
 
 }
