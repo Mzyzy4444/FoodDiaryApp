@@ -1,17 +1,17 @@
 {
     "food items": [
         {
-            "food type": "BEVERAGES",
-            "food name": "sprite"
+            "food type": "SNACKS",
+            "food name": "huu"
         },
         {
-            "food type": "VEGETABLE",
-            "food name": "tomato"
+            "food type": "BEVERAGES",
+            "food name": "sprt"
         }
     ],
     "sex": "female",
-    "weight": 50,
-    "userName": "Zoey",
+    "weight": 1,
+    "userName": "Zoey ",
     "age": 18,
-    "height": 171
+    "height": 2
 }
