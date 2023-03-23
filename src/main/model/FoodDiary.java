@@ -7,6 +7,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 //Represents a food diary, with records of foods eaten every day
 public class FoodDiary implements Writable {

@@ -141,7 +141,6 @@ public class FoodDiaryApp {
         System.out.println("\nc -> calculate the appropriate calories based on your body condition");
         System.out.println("\nq -> quit");
         System.out.println("\nsave -> save food diary to file");
-        //System.out.println("\tload -> load food diary from file");
     }
 
 
