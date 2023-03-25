@@ -217,6 +217,33 @@ public class GUI extends JFrame implements ActionListener {
         InputPanel.setBackground(new Color(229, 255, 204));
         InputPanel.setPreferredSize(new Dimension(500, 500));
         JLabel infoAskingLabel = new JLabel("Please input your information to create a customized foodie diary");
+
+        JTextArea nameT = new JTextArea();
+        nameT.setEditable(true);
+        nameT.setBorder(new TitledBorder("input your name:"));
+
+        JTextArea weightT = new JTextArea();
+        weightT.setEditable(true);
+        weightT.setBorder(new TitledBorder("input your weight in Kg:"));
+
+        JTextArea heightT = new JTextArea();
+        heightT.setEditable(true);
+        nameT.setBorder(new TitledBorder("input your height in cm:"));
+
+        JTextArea ageT = new JTextArea();
+        ageT.setEditable(true);
+        ageT.setBorder(new TitledBorder("input your age:"));
+
+        JTextArea sexT = new JTextArea();
+        sexT.setEditable(true);
+        sexT.setBorder(new TitledBorder("input your gender(male or female):"));
+
+        InputPanel.add(infoAskingLabel);
+        InputPanel.add(nameT);
+        InputPanel.add(weightT);
+        InputPanel.add(heightT);
+        InputPanel.add(ageT);
+        InputPanel.add(sexT);
         InputPanel.setLayout(new BoxLayout(InputPanel, BoxLayout.Y_AXIS));
     }
 
