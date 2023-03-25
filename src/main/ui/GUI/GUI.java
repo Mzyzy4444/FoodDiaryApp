@@ -24,6 +24,7 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel menuPanel;
     private JPanel addLeftPanel;
     private JPanel addRightPanel;
+    private JPanel InputPanel;
 
     private JButton returnButton;
     private JButton loadButton;
@@ -60,13 +61,17 @@ public class GUI extends JFrame implements ActionListener {
 
         initializeLoadPanel();
         makeMenuPanel();
-        makeAddPanel();
         setButtons();
+        makeAddPanel();
+
         addActionToButton();
 
 
         this.setVisible(true);
         loadPanel.setVisible(true);
+        menuPanel.setVisible(false);
+        addRightPanel.setVisible(false);
+        addLeftPanel.setVisible(false);
 
     }
 
@@ -162,6 +167,16 @@ public class GUI extends JFrame implements ActionListener {
         textArea.setEditable(true);
         addRightPanel.add(textArea);
 
+        add(addLeftPanel);
+        add(addRightPanel);
+
+        initializeAddLeftPanel();
+
+//        add(addLeftPanel);
+//        add(addRightPanel);
+
+
+
 
     }
 
@@ -170,7 +185,9 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: calls the given methods when a certain button is clicked on
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Input new info")) {
-            //initializeInputPanel();
+
+            //TODO: initializeInputPanel();
+            initializeMenuPanel();
         } else if (e.getActionCommand().equals("Load")) {
             loadData();
             initializeMenuPanel();
@@ -182,6 +199,7 @@ public class GUI extends JFrame implements ActionListener {
             printDiary();
         } else if (e.getActionCommand().equals("add to my diary")) {
             addFoodItem();
+
         } else if (e.getActionCommand().equals("return to main menu")) {
             initializeMenuPanel();
         }
@@ -194,12 +212,20 @@ public class GUI extends JFrame implements ActionListener {
 
     }
 
+    public void initializeInputPanel() {
+        InputPanel = new JPanel();
+        InputPanel.setBackground(new Color(229, 255, 204));
+        InputPanel.setPreferredSize(new Dimension(500, 500));
+        JLabel infoAskingLabel = new JLabel("Please input your information to create a customized foodie diary");
+        InputPanel.setLayout(new BoxLayout(InputPanel, BoxLayout.Y_AXIS));
+    }
+
+
     // MODIFIES: this
     // EFFECTS: initialize the panel that displays the load option
     public void initializeLoadPanel() {
         loadPanel = new JPanel();
         loadPanel.setBackground(new Color(229, 255, 204));
-        add(loadPanel);
         loadPanel.setPreferredSize(new Dimension(500, 500));
         //menuPanel.setBounds(0,0,250,250);
 
@@ -225,6 +251,9 @@ public class GUI extends JFrame implements ActionListener {
         loadPanel.add(welcomeLabel);
         loadPanel.add(logoLabel);
         loadPanel.add(loadLabel);
+        pack();
+
+        add(loadPanel);
 
 
     }
@@ -257,10 +286,10 @@ public class GUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: initialize the panel that displays the add options
     public void initializeAddPanel() {
-        initializeAddLeftPanel();
+//        initializeAddLeftPanel();
 
-        add(addLeftPanel);
-        add(addRightPanel);
+//        add(addLeftPanel);
+//        add(addRightPanel);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.X_AXIS));
         //pack();
         loadPanel.setVisible(false);
@@ -311,6 +340,7 @@ public class GUI extends JFrame implements ActionListener {
         foodType = getType((String) typeBox.getSelectedItem());
         foodItem = new FoodItem(foodInputField.getText(), foodType);
         fd.addFoodItem(foodItem);
+        textArea.setText("Food successfully added ^v^ !");
     }
 
 
@@ -334,13 +364,23 @@ public class GUI extends JFrame implements ActionListener {
     public void printDiary() {
 
         textArea.setPreferredSize(new Dimension(200,450));
-        //textArea.setBackground(new Color(255,204,229));
-        //textArea.setForeground(new Color(0,0,0));
+        textArea.setBackground(new Color(255,204,229));
+        textArea.setForeground(new Color(0,0,0));
         textArea.setEditable(false);
         textArea.setLineWrap(true);
-        textArea.setText("The food in your diary are:" + fd.printDiaryViewList());
-        textArea.setBorder(BorderFactory.createMatteBorder(-1,-1,-1,-1,new ImageIcon("data/waveline.gif")));
+        //textArea.setBorder(BorderFactory.createMatteBorder(-1,-1,-1,-1,new ImageIcon("data/waveline.gif")));
         pack();
+        try {
+            textArea.setText("The food in your diary are:" + fd.printDiaryViewList());
+            textArea.setDisabledTextColor(new Color(0,0,0));
+            textArea.setSelectedTextColor(new Color(0,0,0));
+        } catch (NullPointerException e) {
+            textArea.setText("No food diary recorded");
+            textArea.setDisabledTextColor(new Color(0,0,0));
+            textArea.setSelectedTextColor(new Color(0,0,0));
+        }
+
+
 
     }
 
