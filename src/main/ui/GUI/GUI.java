@@ -123,7 +123,7 @@ public class GUI extends JFrame implements ActionListener {
         button1.setFont(new Font("Comic Sans", Font.BOLD, 12));
         button1.setBackground(Color.white);
         panel.add(button1);
-        pack();
+        //pack();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
@@ -166,6 +166,10 @@ public class GUI extends JFrame implements ActionListener {
     public void makeMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(229, 204, 255));
+        menuPanel.setPreferredSize(new Dimension(500,500));
+        menuPanel.setMaximumSize(menuPanel.getPreferredSize());
+        menuPanel.setMinimumSize(menuPanel.getPreferredSize());
+
 
         nameLabel = new JLabel();
         nameLabel.setText("Fit-Foodie");
@@ -174,6 +178,7 @@ public class GUI extends JFrame implements ActionListener {
         nameLabel.setSize(300, 100);
         menuPanel.add(nameLabel);
         menuPanel.add(logoLabel);
+        pack();
 
 
     }
@@ -201,9 +206,7 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: calls the given methods when a certain button is clicked on
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Input new info")) {
-
             initializeInputPanel();
-            setInfo();
             //initializeMenuPanel();
         } else if (e.getActionCommand().equals("Load")) {
             loadData();
@@ -221,6 +224,7 @@ public class GUI extends JFrame implements ActionListener {
             initializeMenuPanel();
         } else if (e.getActionCommand().equals("add new info to json")) {
             //saveData2(fd);
+            setInfo();
             initializeAddPanel();
         }
     }
@@ -273,9 +277,9 @@ public class GUI extends JFrame implements ActionListener {
 
         add(InputPanel);
 
-
     }
 
+    //TODO: Bug
     // MODIFIES: fd
     // EFFECTS: input user info to the newly-constructed food diary and save new user info to json;
     public void setInfo() {
@@ -287,21 +291,15 @@ public class GUI extends JFrame implements ActionListener {
             String userSex = (String) sexT.getText();
 
             this.fd = new FoodDiary(userName, userWeight, userHeight, userAge, userSex);
-            JSONObject jsonObject = fd.toJson();
-            String jsonString = jsonObject.toString();
-            try (PrintWriter out = new PrintWriter(new FileWriter(JSON_SAVE, false))) {
-                out.println(jsonString);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //saveData2(fd);
-//            jsonWriter = new JsonWriter("data/food-diary.json");
-//            jsonWriter.open();
-//            jsonWriter.write(fd);
-//            jsonWriter.close();
+            jsonWriter = new JsonWriter("data/food-diary.json");
+            jsonWriter.open();
+            jsonWriter.write(fd);
+            jsonWriter.close();
 
         } catch (NumberFormatException e) {
             // catched;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -318,7 +316,6 @@ public class GUI extends JFrame implements ActionListener {
 
         welcomeLabel = new JLabel("Welcome to Fit-Foodie!");
         welcomeLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
-//        welcomeLabel.setForeground(new Color(229,255,204));
         welcomeLabel.setSize(300, 100);
         welcomeLabel.setVisible(true);
 
@@ -457,8 +454,6 @@ public class GUI extends JFrame implements ActionListener {
             textArea.setSelectedTextColor(new Color(0,0,0));
         }
 
-
-
     }
 
 
@@ -487,8 +482,8 @@ public class GUI extends JFrame implements ActionListener {
 
     public void saveData2(FoodDiary fd) {
         try {
-            JSONObject json = fd.toJson();
-            jsonWriter.saveToFile(json.toString(4));
+//            JSONObject json = fd.toJson();
+//            jsonWriter.saveToFile(json.toString(4));
 //            jsonWriter = new JsonWriter("data/food-diary.json");
 //            jsonWriter.open();
 //            jsonWriter.write(fd);
