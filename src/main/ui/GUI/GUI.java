@@ -3,6 +3,7 @@ package ui.GUI;
 
 import model.FoodDiary;
 import model.FoodItem;
+import org.json.JSONObject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -12,7 +13,12 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import static java.lang.Integer.parseInt;
 
 public class GUI extends JFrame implements ActionListener {
     private FoodDiary fd;
@@ -34,11 +40,19 @@ public class GUI extends JFrame implements ActionListener {
     private JButton viewButton;
     private JButton addFoodButton;
 
+    private JButton add2Button;
+
 
     private JComboBox typeBox;
 
     private JTextArea textArea;
     private JTextField foodInputField;
+    private JTextField nameT;
+    private JTextField weightT;
+    private JTextField heightT;
+    private JTextField ageT;
+    private JTextField sexT;
+
 
 
     private JLabel welcomeLabel;
@@ -65,6 +79,7 @@ public class GUI extends JFrame implements ActionListener {
         makeAddPanel();
 
         addActionToButton();
+        initializeInputPanel();
 
 
         this.setVisible(true);
@@ -72,6 +87,8 @@ public class GUI extends JFrame implements ActionListener {
         menuPanel.setVisible(false);
         addRightPanel.setVisible(false);
         addLeftPanel.setVisible(false);
+
+        InputPanel.setVisible(false);
 
     }
 
@@ -96,6 +113,8 @@ public class GUI extends JFrame implements ActionListener {
         //addButton(addFoodButton,addLeftPanel); 在addleftP加，否则顺序不对
 
         returnButton = new JButton("return to main menu");
+
+        add2Button = new JButton("add new fd to json");
     }
 
     // MODIFIES: this
@@ -131,6 +150,10 @@ public class GUI extends JFrame implements ActionListener {
 
         returnButton.addActionListener(this);
         returnButton.setActionCommand("return to main menu");
+
+        add2Button.addActionListener(this);
+        add2Button.setActionCommand("add new info to json");
+
     }
 
 
@@ -158,7 +181,6 @@ public class GUI extends JFrame implements ActionListener {
     public void makeAddPanel() {
         addLeftPanel = new JPanel();
         addLeftPanel.setBackground(new Color(204, 229, 255));
-        //addLeftPanel.setPreferredSize(new Dimension(250,500));
         addRightPanel = new JPanel();
         addRightPanel.setBackground(new Color(210, 204, 255));
         addRightPanel.setPreferredSize(new Dimension(250, 500));
@@ -172,12 +194,6 @@ public class GUI extends JFrame implements ActionListener {
 
         initializeAddLeftPanel();
 
-//        add(addLeftPanel);
-//        add(addRightPanel);
-
-
-
-
     }
 
 
@@ -186,8 +202,9 @@ public class GUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Input new info")) {
 
-            //TODO: initializeInputPanel();
-            initializeMenuPanel();
+            initializeInputPanel();
+            setInfo();
+            //initializeMenuPanel();
         } else if (e.getActionCommand().equals("Load")) {
             loadData();
             initializeMenuPanel();
@@ -202,41 +219,40 @@ public class GUI extends JFrame implements ActionListener {
 
         } else if (e.getActionCommand().equals("return to main menu")) {
             initializeMenuPanel();
+        } else if (e.getActionCommand().equals("add new info to json")) {
+            //saveData2(fd);
+            initializeAddPanel();
         }
-//        else if (e.getActionCommand().equals("Select food type")) {
-//            JComboBox cb = (JComboBox) e.getSource();
-//            String foodType = (String) cb.getSelectedItem();
-//            //TODO: updateFoodType();
-//        }
-
-
     }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void initializeInputPanel() {
         InputPanel = new JPanel();
         InputPanel.setBackground(new Color(229, 255, 204));
         InputPanel.setPreferredSize(new Dimension(500, 500));
         JLabel infoAskingLabel = new JLabel("Please input your information to create a customized foodie diary");
 
-        JTextArea nameT = new JTextArea();
+        nameT = new JTextField();
         nameT.setEditable(true);
         nameT.setBorder(new TitledBorder("input your name:"));
 
-        JTextArea weightT = new JTextArea();
+        weightT = new JTextField();
         weightT.setEditable(true);
         weightT.setBorder(new TitledBorder("input your weight in Kg:"));
 
-        JTextArea heightT = new JTextArea();
+        heightT = new JTextField();
         heightT.setEditable(true);
-        nameT.setBorder(new TitledBorder("input your height in cm:"));
+        heightT.setBorder(new TitledBorder("input your height in cm:"));
 
-        JTextArea ageT = new JTextArea();
+        ageT = new JTextField();
         ageT.setEditable(true);
         ageT.setBorder(new TitledBorder("input your age:"));
 
-        JTextArea sexT = new JTextArea();
+        sexT = new JTextField();
         sexT.setEditable(true);
         sexT.setBorder(new TitledBorder("input your gender(male or female):"));
+
+
 
         InputPanel.add(infoAskingLabel);
         InputPanel.add(nameT);
@@ -245,7 +261,51 @@ public class GUI extends JFrame implements ActionListener {
         InputPanel.add(ageT);
         InputPanel.add(sexT);
         InputPanel.setLayout(new BoxLayout(InputPanel, BoxLayout.Y_AXIS));
+        InputPanel.add(add2Button);
+
+
+        InputPanel.setVisible(true);
+        loadPanel.setVisible(false);
+        addLeftPanel.setVisible(false);
+        addRightPanel.setVisible(false);
+        menuPanel.setVisible(false);
+
+
+        add(InputPanel);
+
+
     }
+
+    // MODIFIES: fd
+    // EFFECTS: input user info to the newly-constructed food diary and save new user info to json;
+    public void setInfo() {
+        try {
+            String userName = (String) nameT.getText();
+            int userWeight = parseInt(weightT.getText());
+            int userHeight = parseInt(heightT.getText());
+            int userAge = parseInt(ageT.getText());
+            String userSex = (String) sexT.getText();
+
+            this.fd = new FoodDiary(userName, userWeight, userHeight, userAge, userSex);
+            JSONObject jsonObject = fd.toJson();
+            String jsonString = jsonObject.toString();
+            try (PrintWriter out = new PrintWriter(new FileWriter(JSON_SAVE, false))) {
+                out.println(jsonString);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //saveData2(fd);
+//            jsonWriter = new JsonWriter("data/food-diary.json");
+//            jsonWriter.open();
+//            jsonWriter.write(fd);
+//            jsonWriter.close();
+
+        } catch (NumberFormatException e) {
+            // catched;
+        }
+
+    }
+
 
 
     // MODIFIES: this
@@ -294,14 +354,8 @@ public class GUI extends JFrame implements ActionListener {
         loadPanel.setVisible(false);
         addLeftPanel.setVisible(false);
         addRightPanel.setVisible(false);
+        InputPanel.setVisible(false);
 
-
-//        nameLabel = new JLabel();
-//        nameLabel.setText("Fit-Foodie");
-//        nameLabel.setVisible(true);
-//        nameLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
-//        nameLabel.setSize(300, 100);
-//        menuPanel.add(nameLabel);
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 
         menuPanel.setVisible(true);
@@ -313,15 +367,11 @@ public class GUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: initialize the panel that displays the add options
     public void initializeAddPanel() {
-//        initializeAddLeftPanel();
-
-//        add(addLeftPanel);
-//        add(addRightPanel);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.X_AXIS));
         //pack();
         loadPanel.setVisible(false);
         menuPanel.setVisible(false);
-
+        InputPanel.setVisible(false);
 
         addLeftPanel.setVisible(true);
         addRightPanel.setVisible(true);
@@ -413,10 +463,7 @@ public class GUI extends JFrame implements ActionListener {
 
 
 
-    //TODO
-    // MODIFIES: this
-    // EFFECTS: loads the car listings from json file if it exists,
-    // otherwise prints error
+
     public void loadData() {
         try {
             jsonReader = new JsonReader("data/food-diary.json");
@@ -432,6 +479,20 @@ public class GUI extends JFrame implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(fd);
             jsonWriter.close();
+            System.out.println("Food Diary saved to file " + "data/food-diary.json");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void saveData2(FoodDiary fd) {
+        try {
+            JSONObject json = fd.toJson();
+            jsonWriter.saveToFile(json.toString(4));
+//            jsonWriter = new JsonWriter("data/food-diary.json");
+//            jsonWriter.open();
+//            jsonWriter.write(fd);
+//            jsonWriter.close();
             System.out.println("Food Diary saved to file " + "data/food-diary.json");
         } catch (Exception e) {
             throw new RuntimeException(e);
