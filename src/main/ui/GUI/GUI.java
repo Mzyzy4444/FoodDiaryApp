@@ -53,8 +53,6 @@ public class GUI extends JFrame implements ActionListener {
     private JTextField ageT;
     private JTextField sexT;
 
-
-
     private JLabel welcomeLabel;
     private JLabel nameLabel;
     private JLabel logoLabel;
@@ -183,6 +181,8 @@ public class GUI extends JFrame implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: make two add panels and add to the JFrame
     public void makeAddPanel() {
         addLeftPanel = new JPanel();
         addLeftPanel.setBackground(new Color(204, 229, 255));
@@ -219,7 +219,6 @@ public class GUI extends JFrame implements ActionListener {
             printDiary();
         } else if (e.getActionCommand().equals("add to my diary")) {
             addFoodItem();
-
         } else if (e.getActionCommand().equals("return to main menu")) {
             initializeMenuPanel();
         } else if (e.getActionCommand().equals("add new info to json")) {
@@ -229,7 +228,8 @@ public class GUI extends JFrame implements ActionListener {
         }
     }
 
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    // MODIFIES: this
+    // EFFECTS: initialize input panel;
     public void initializeInputPanel() {
         InputPanel = new JPanel();
         InputPanel.setBackground(new Color(229, 255, 204));
@@ -259,6 +259,30 @@ public class GUI extends JFrame implements ActionListener {
 
 
         InputPanel.add(infoAskingLabel);
+        inputPAddCs();
+//        InputPanel.add(nameT);
+//        InputPanel.add(weightT);
+//        InputPanel.add(heightT);
+//        InputPanel.add(ageT);
+//        InputPanel.add(sexT);
+//        InputPanel.setLayout(new BoxLayout(InputPanel, BoxLayout.Y_AXIS));
+//        InputPanel.add(add2Button);
+
+
+//        InputPanel.setVisible(true);
+//        loadPanel.setVisible(false);
+//        addLeftPanel.setVisible(false);
+//        addRightPanel.setVisible(false);
+//        menuPanel.setVisible(false);
+
+
+        add(InputPanel);
+    }
+
+    //MODIFIES: inputPanel
+    // EFFECTS: add all the components needed to input panel and set only inputPanel to be visible
+    public void inputPAddCs() {
+        //InputPanel.add(infoAskingLabel);
         InputPanel.add(nameT);
         InputPanel.add(weightT);
         InputPanel.add(heightT);
@@ -267,19 +291,15 @@ public class GUI extends JFrame implements ActionListener {
         InputPanel.setLayout(new BoxLayout(InputPanel, BoxLayout.Y_AXIS));
         InputPanel.add(add2Button);
 
-
         InputPanel.setVisible(true);
         loadPanel.setVisible(false);
         addLeftPanel.setVisible(false);
         addRightPanel.setVisible(false);
         menuPanel.setVisible(false);
-
-
-        add(InputPanel);
-
     }
 
-    //TODO: Bug
+
+
     // MODIFIES: fd
     // EFFECTS: input user info to the newly-constructed food diary and save new user info to json;
     public void setInfo() {
@@ -434,7 +454,7 @@ public class GUI extends JFrame implements ActionListener {
         return foodType;
     }
 
-    //TODO
+    // EFFECTS: display the food items in current food diary in the addRightPanel
     public void printDiary() {
 
         textArea.setPreferredSize(new Dimension(200,450));
@@ -457,8 +477,8 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
-
-
+    // MODIFIES: this
+    // EFFECTS: load food diary data from json file
     public void loadData() {
         try {
             jsonReader = new JsonReader("data/food-diary.json");
@@ -468,6 +488,9 @@ public class GUI extends JFrame implements ActionListener {
         }
     }
 
+
+    // MODIFIES : this
+    // EFFECTS: save current food Diary to json file
     public void saveData() {
         try {
             jsonWriter = new JsonWriter("data/food-diary.json");
@@ -480,19 +503,19 @@ public class GUI extends JFrame implements ActionListener {
         }
     }
 
-    public void saveData2(FoodDiary fd) {
-        try {
-//            JSONObject json = fd.toJson();
-//            jsonWriter.saveToFile(json.toString(4));
-//            jsonWriter = new JsonWriter("data/food-diary.json");
-//            jsonWriter.open();
-//            jsonWriter.write(fd);
-//            jsonWriter.close();
-            System.out.println("Food Diary saved to file " + "data/food-diary.json");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void saveData2(FoodDiary fd) {
+//        try {
+////            JSONObject json = fd.toJson();
+////            jsonWriter.saveToFile(json.toString(4));
+////            jsonWriter = new JsonWriter("data/food-diary.json");
+////            jsonWriter.open();
+////            jsonWriter.write(fd);
+////            jsonWriter.close();
+//            System.out.println("Food Diary saved to file " + "data/food-diary.json");
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
 }
