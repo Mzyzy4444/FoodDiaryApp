@@ -23,3 +23,20 @@
 - As a user, I want to be able to save my food diary to file (if I choose).
 - As a user, I want to be able to be able to load my food diary from file (if I choose to do so).
 
+
+## Instructions for Grader
+- You can locate my visual component at the first panel showed up in this app, where I added a logo for my foodie diary
+draw by myself. You can also find another visual components at the menu panel where again shows the logo. I also used border
+at the input info panel where I surround each text field with titled boarder. 
+- You can choose whether to load from the history foodie diary at the beginning of this application. If you choose "yes", it will load from the history data. 
+If you choose "no", you can input your personal information to generate a newly customized foodie diary.
+- You can generate the first required action related to adding Xs to a Y by clicking the "record food items" button, then
+you will be direct to a new panel. In this panel, you can select a food tye from the drop dow box, and input
+the name of the food item you want to add. Then click "add to my diary" 
+button, once you see a "Food successfully added" message on the right-hand side, 
+that means your food item has been added to the diary. 
+- You can generate the second required action related to adding Xs to a Y by clickng "view current foodie diary" 
+on the panel you were directed to in the last step. You can see what's in your foodie diary 
+on the right-hand side of the panel. 
+- You can save the state of my application by clicking "save current foodie diary" button. 
+
