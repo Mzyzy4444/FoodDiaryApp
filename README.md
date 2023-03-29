@@ -31,12 +31,18 @@ at the input info panel where I surround each text field with titled boarder.
 - You can choose whether to load from the history foodie diary at the beginning of this application. If you choose "yes", it will load from the history data. 
 If you choose "no", you can input your personal information to generate a newly customized foodie diary.
 - You can generate the first required action related to adding Xs to a Y by clicking the "record food items" button, then
-you will be direct to a new panel. In this panel, you can select a food tye from the drop dow box, and input
+you will be direct to a new panel. In this panel, you can select a food type from the drop dow box, and input
 the name of the food item you want to add. Then click "add to my diary" 
-button, once you see a "Food successfully added" message on the right-hand side, 
+button, once you see a "Food item added !" message on the right-hand side, 
 that means your food item has been added to the diary. 
-- You can generate the second required action related to adding Xs to a Y by clickng "view current foodie diary" 
+- You can generate the second required action related to adding Xs to a Y by clicking "remove this food item" button, 
+  on the panel you were directed to in the last step. In this panel, you can select a food type from the drop dow box, and input
+  the name of the food item you want to add. Then click "delete this food item"
+  button, once you see a "Food item deleted !" message on the right-hand side,
+  that means your food item has been added to the diary.
+- You can generate the third required action related to adding Xs to a Y by clicking "view current foodie diary" 
 on the panel you were directed to in the last step. You can see what's in your foodie diary 
 on the right-hand side of the panel. 
-- You can save the state of my application by clicking "save current foodie diary" button. 
+- You can save the state of my application by clicking "save current foodie diary" button on the main menu panel. However, if you choose not to load from history
+data at the begining, the information you input will be saved automatically; but you can decided whether to save your food items by choosing to click the save button. 
 

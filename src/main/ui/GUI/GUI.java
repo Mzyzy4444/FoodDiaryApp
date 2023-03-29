@@ -35,6 +35,7 @@ public class GUI extends JFrame implements ActionListener {
     private JButton saveButton;
     private JButton viewButton;
     private JButton addFoodButton;
+    private JButton deleteButton;
 
     private JButton add2Button;
 
@@ -56,7 +57,7 @@ public class GUI extends JFrame implements ActionListener {
     private JLabel foodAsking;
 
 
-    private static final String JSON_SAVE = "./data/food-diary.json";
+    private static final String JSON_SAVE = "data/food-diary.json";
 
     // Make a new JFrame with different attributes
     public GUI() {
@@ -97,6 +98,8 @@ public class GUI extends JFrame implements ActionListener {
         // In the menu panel
         addButton = new JButton("record food items");
         saveButton = new JButton("save current foodie diary");
+        addButton.setAlignmentX(CENTER_ALIGNMENT);
+        saveButton.setAlignmentX(CENTER_ALIGNMENT);
         addButton(addButton, menuPanel);
         addButton(saveButton, menuPanel);
 
@@ -105,6 +108,7 @@ public class GUI extends JFrame implements ActionListener {
         //(viewButton,addLeftPanel);; 在addleftP加，否则顺序不对
         addFoodButton = new JButton("add to my diary");
         //addButton(addFoodButton,addLeftPanel); 在addleftP加，否则顺序不对
+        deleteButton = new JButton("remove this food item");
 
         returnButton = new JButton("return to main menu");
 
@@ -141,6 +145,8 @@ public class GUI extends JFrame implements ActionListener {
 
         addFoodButton.addActionListener(this);
         addFoodButton.setActionCommand("add to my diary");
+        deleteButton.addActionListener(this);
+        deleteButton.setActionCommand("remove this food item");
 
         returnButton.addActionListener(this);
         returnButton.setActionCommand("return to main menu");
@@ -165,10 +171,15 @@ public class GUI extends JFrame implements ActionListener {
         nameLabel = new JLabel();
         nameLabel.setText("Fit-Foodie");
         nameLabel.setVisible(true);
-        nameLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
-        nameLabel.setSize(300, 100);
+        nameLabel.setFont(new Font("Comic Sans", Font.BOLD, 50));
+        nameLabel.setSize(500, 100);
         menuPanel.add(nameLabel);
         menuPanel.add(logoLabel);
+
+        nameLabel.setAlignmentX(CENTER_ALIGNMENT);
+        logoLabel.setAlignmentX(CENTER_ALIGNMENT);
+
+        //menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         pack();
 
 
@@ -219,15 +230,18 @@ public class GUI extends JFrame implements ActionListener {
         } else if (e.getActionCommand().equals("add to my diary")) {
             addFoodItem();
         } else if (e.getActionCommand().equals("return to main menu")) {
-            menuPanel.setVisible(true);
-            addLeftPanel.setVisible(false);
-            addRightPanel.setVisible(false);
-            loadPanel.setVisible(false);
-            inputPanel.setVisible(false);
-            //initializeMenuPanel();
+//            menuPanel.setPreferredSize(new Dimension(500,500));
+//            menuPanel.setVisible(true);
+//            addLeftPanel.setVisible(false);
+//            addRightPanel.setVisible(false);
+//            loadPanel.setVisible(false);
+//            inputPanel.setVisible(false);
+            initializeMenuPanel();
         } else if (e.getActionCommand().equals("add new info to json")) {
             setInfo();
             initializeAddPanel();
+        } else if (e.getActionCommand().equals("remove this food item")) {
+            deleteFoodItem();
         }
     }
 
@@ -302,7 +316,7 @@ public class GUI extends JFrame implements ActionListener {
             jsonWriter.close();
 
         } catch (NumberFormatException e) {
-            // catched;
+            // 我接！
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -327,9 +341,8 @@ public class GUI extends JFrame implements ActionListener {
         JLabel loadLabel = new JLabel("Do you choose to load from history data?");
         loadLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
         loadLabel.setSize(400, 50);
-        //loadLabel.setVisible(true);
+
         TitledBorder loadingDataTitle = BorderFactory.createTitledBorder("Loading from Fit-Foodie?");
-        //Border loadingDataTitle = BorderFactory.createRaisedBevelBorder();
         loadLabel.setBorder(loadingDataTitle);
 
         logoLabel = new JLabel();
@@ -347,8 +360,6 @@ public class GUI extends JFrame implements ActionListener {
 
         add(loadPanel);
         logoLabel.setVisible(true);
-
-
     }
 
 
@@ -359,13 +370,14 @@ public class GUI extends JFrame implements ActionListener {
 //        menuPanel.setMaximumSize(menuPanel.getPreferredSize());
 //        menuPanel.setMinimumSize(menuPanel.getPreferredSize());
 
-        menuPanel.setPreferredSize(new Dimension(500, 500));
+        menuPanel.setPreferredSize(new Dimension(2000, 2000));
         loadPanel.setVisible(false);
         addLeftPanel.setVisible(false);
         addRightPanel.setVisible(false);
         inputPanel.setVisible(false);
 
         menuPanel.setVisible(true);
+        //TODO
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 
         //menuPanel.setVisible(true);
@@ -411,6 +423,7 @@ public class GUI extends JFrame implements ActionListener {
         addLeftPanel.add(foodAsking);
         addLeftPanel.add(foodInputField);
         addLeftPanel.add(addFoodButton);
+        addLeftPanel.add(deleteButton);
         addLeftPanel.add(viewButton);
         addLeftPanel.add(returnButton);
 
@@ -426,10 +439,19 @@ public class GUI extends JFrame implements ActionListener {
         foodType = getType((String) typeBox.getSelectedItem());
         foodItem = new FoodItem(foodInputField.getText(), foodType);
         fd.addFoodItem(foodItem);
-        textArea.setText("Food successfully added ^v^ !");
+        textArea.setText("Food item added ^v^ !");
         textArea.setPreferredSize(new Dimension(150,450));
         textArea.setLineWrap(true);
         //TODO
+    }
+
+    public void deleteFoodItem() {
+        foodType = getType((String) typeBox.getSelectedItem());
+        foodItem = new FoodItem(foodInputField.getText(), foodType);
+        fd.deleteFoodItem(foodInputField.getText());
+        textArea.setText("Food item deleted ^v^ !");
+        textArea.setPreferredSize(new Dimension(150,450));
+        textArea.setLineWrap(true);
     }
 
 
@@ -476,7 +498,7 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: load food diary data from json file
     public void loadData() {
         try {
-            jsonReader = new JsonReader("data/food-diary.json");
+            jsonReader = new JsonReader(JSON_SAVE);
             fd = jsonReader.read();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -488,7 +510,7 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: save current food Diary to json file
     public void saveData() {
         try {
-            jsonWriter = new JsonWriter("data/food-diary.json");
+            jsonWriter = new JsonWriter(JSON_SAVE);
             jsonWriter.open();
             jsonWriter.write(fd);
             jsonWriter.close();
