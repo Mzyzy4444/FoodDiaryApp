@@ -1,11 +1,8 @@
 {
-    "food items": [{
-        "food type": "SNACKS",
-        "food name": "Chocolate"
-    }],
+    "food items": [],
     "sex": "female",
-    "weight": 49,
-    "userName": "Zoey ",
+    "weight": 1,
+    "userName": "h",
     "age": 18,
-    "height": 171
+    "height": 1
 }

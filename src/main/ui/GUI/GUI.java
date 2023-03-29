@@ -78,10 +78,10 @@ public class GUI extends JFrame implements ActionListener {
 
         this.setVisible(true);
         loadPanel.setVisible(true);
+
         menuPanel.setVisible(false);
         addRightPanel.setVisible(false);
         addLeftPanel.setVisible(false);
-
         inputPanel.setVisible(false);
 
     }
@@ -161,8 +161,6 @@ public class GUI extends JFrame implements ActionListener {
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(229, 204, 255));
         menuPanel.setPreferredSize(new Dimension(500,500));
-//        menuPanel.setMaximumSize(menuPanel.getPreferredSize());
-//        menuPanel.setMinimumSize(menuPanel.getPreferredSize());
 
         nameLabel = new JLabel();
         nameLabel.setText("Fit-Foodie");
@@ -171,7 +169,6 @@ public class GUI extends JFrame implements ActionListener {
         nameLabel.setSize(300, 100);
         menuPanel.add(nameLabel);
         menuPanel.add(logoLabel);
-
         pack();
 
 
@@ -182,9 +179,10 @@ public class GUI extends JFrame implements ActionListener {
     public void makeAddPanel() {
         addLeftPanel = new JPanel();
         addLeftPanel.setBackground(new Color(204, 229, 255));
+        addLeftPanel.setPreferredSize(new Dimension(350,500));
         addRightPanel = new JPanel();
         addRightPanel.setBackground(new Color(210, 204, 255));
-        addRightPanel.setPreferredSize(new Dimension(250, 500));
+        addRightPanel.setPreferredSize(new Dimension(150, 500));
 
         textArea = new JTextArea();
         textArea.setEditable(true);
@@ -202,7 +200,11 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: calls the given methods when a certain button is clicked on
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Input new info")) {
+            //makeMenuPanel();
+            add(menuPanel);
+            //pack();
             initializeInputPanel();
+
             //initializeMenuPanel();
         } else if (e.getActionCommand().equals("Load")) {
             loadData();
@@ -217,9 +219,13 @@ public class GUI extends JFrame implements ActionListener {
         } else if (e.getActionCommand().equals("add to my diary")) {
             addFoodItem();
         } else if (e.getActionCommand().equals("return to main menu")) {
-            initializeMenuPanel();
+            menuPanel.setVisible(true);
+            addLeftPanel.setVisible(false);
+            addRightPanel.setVisible(false);
+            loadPanel.setVisible(false);
+            inputPanel.setVisible(false);
+            //initializeMenuPanel();
         } else if (e.getActionCommand().equals("add new info to json")) {
-            //saveData2(fd);
             setInfo();
             initializeAddPanel();
         }
@@ -321,7 +327,7 @@ public class GUI extends JFrame implements ActionListener {
         JLabel loadLabel = new JLabel("Do you choose to load from history data?");
         loadLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
         loadLabel.setSize(400, 50);
-        loadLabel.setVisible(true);
+        //loadLabel.setVisible(true);
         TitledBorder loadingDataTitle = BorderFactory.createTitledBorder("Loading from Fit-Foodie?");
         //Border loadingDataTitle = BorderFactory.createRaisedBevelBorder();
         loadLabel.setBorder(loadingDataTitle);
@@ -330,13 +336,17 @@ public class GUI extends JFrame implements ActionListener {
         logoLabel.setIcon(new ImageIcon("data/logoIcon.png"));
         logoLabel.setPreferredSize(new Dimension(300, 300));
 
+        JLabel logoLabel2 = new JLabel();
+        logoLabel2.setIcon(new ImageIcon("data/logoIcon.png"));
+        logoLabel2.setPreferredSize(new Dimension(300, 300));
 
         loadPanel.add(welcomeLabel);
-        loadPanel.add(logoLabel);
+        loadPanel.add(logoLabel2);
         loadPanel.add(loadLabel);
         pack();
 
         add(loadPanel);
+        logoLabel.setVisible(true);
 
 
     }
@@ -346,8 +356,8 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: initialize the panel that displays the menu
     public void initializeMenuPanel() {
         //add(menuPanel);
-        menuPanel.setMaximumSize(menuPanel.getPreferredSize());
-        menuPanel.setMinimumSize(menuPanel.getPreferredSize());
+//        menuPanel.setMaximumSize(menuPanel.getPreferredSize());
+//        menuPanel.setMinimumSize(menuPanel.getPreferredSize());
 
         menuPanel.setPreferredSize(new Dimension(500, 500));
         loadPanel.setVisible(false);
@@ -355,9 +365,10 @@ public class GUI extends JFrame implements ActionListener {
         addRightPanel.setVisible(false);
         inputPanel.setVisible(false);
 
+        menuPanel.setVisible(true);
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 
-        menuPanel.setVisible(true);
+        //menuPanel.setVisible(true);
 
 
     }
@@ -395,7 +406,6 @@ public class GUI extends JFrame implements ActionListener {
 
         foodInputField = new JTextField(1);
 
-
         addLeftPanel.add(typeAsking);
         addLeftPanel.add(typeBox);
         addLeftPanel.add(foodAsking);
@@ -417,6 +427,9 @@ public class GUI extends JFrame implements ActionListener {
         foodItem = new FoodItem(foodInputField.getText(), foodType);
         fd.addFoodItem(foodItem);
         textArea.setText("Food successfully added ^v^ !");
+        textArea.setPreferredSize(new Dimension(150,450));
+        textArea.setLineWrap(true);
+        //TODO
     }
 
 
@@ -439,7 +452,7 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: display the food items in current food diary in the addRightPanel
     public void printDiary() {
 
-        textArea.setPreferredSize(new Dimension(200,450));
+        textArea.setPreferredSize(new Dimension(150,450));
         textArea.setBackground(new Color(255,204,229));
         textArea.setForeground(new Color(0,0,0));
         textArea.setEditable(false);
