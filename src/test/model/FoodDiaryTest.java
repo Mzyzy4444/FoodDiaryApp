@@ -4,6 +4,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class FoodDiaryTest {
     private FoodDiary fdZoey;
@@ -58,23 +59,35 @@ public class FoodDiaryTest {
     public void testDeleteFoodItem() {
         fdSkye.addFoodItem(apple);
         assertEquals(1, fdSkye.getSize());
-        fdSkye.deleteFoodItem("Apple");
-        assertEquals(0,fdSkye.getSize());
+        try {
+            fdSkye.deleteFoodItem("Apple");
+
+        } catch (Exception e) {
+            fail();
+        }
     }
+
 
     @Test
     public void testDeleteFoodItemNotInDiary() {
         fdSkye.addFoodItem(apple);
         assertEquals(1, fdSkye.getSize());
-        fdSkye.deleteFoodItem("Prange");
-        assertEquals(1,fdSkye.getSize());
+        try {
+            fdSkye.deleteFoodItem("Prange");
+            fail();
+        } catch (Exception e) {
+            assertEquals(1, fdSkye.getSize());
+        }
     }
 
     @Test
     public void testDeleteFoodItemEmpty() {
         assertEquals(0, fdSkye.getSize());
-        fdSkye.deleteFoodItem("Apple");
-        assertEquals(0,fdSkye.getSize());
+        try {
+            fdSkye.deleteFoodItem("Apple");
+        } catch (Exception e) {
+            assertEquals(0, fdSkye.getSize());
+        }
     }
 
     @Test

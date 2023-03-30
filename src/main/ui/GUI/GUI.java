@@ -55,6 +55,8 @@ public class GUI extends JFrame implements ActionListener {
     private JLabel logoLabel;
     private JLabel typeAsking;
     private JLabel foodAsking;
+    private JLabel deLabel;
+    private JLabel adLabel;
 
 
     private static final String JSON_SAVE = "data/food-diary.json";
@@ -227,6 +229,7 @@ public class GUI extends JFrame implements ActionListener {
             initializeAddPanel();
         } else if (e.getActionCommand().equals("view")) {
             printDiary();
+
         } else if (e.getActionCommand().equals("add to my diary")) {
             addFoodItem();
         } else if (e.getActionCommand().equals("return to main menu")) {
@@ -440,18 +443,34 @@ public class GUI extends JFrame implements ActionListener {
         foodItem = new FoodItem(foodInputField.getText(), foodType);
         fd.addFoodItem(foodItem);
         textArea.setText("Food item added ^v^ !");
-        textArea.setPreferredSize(new Dimension(150,450));
+        textArea.setPreferredSize(new Dimension(150,350));
         textArea.setLineWrap(true);
-        //TODO
+
+        adLabel = new JLabel();
+        adLabel.setIcon(new ImageIcon("data/add.jpeg"));
+        adLabel.setPreferredSize(new Dimension(150, 150));
+        addRightPanel.add(adLabel);
+        adLabel.setVisible(true);
+
     }
 
     public void deleteFoodItem() {
         foodType = getType((String) typeBox.getSelectedItem());
         foodItem = new FoodItem(foodInputField.getText(), foodType);
-        fd.deleteFoodItem(foodInputField.getText());
-        textArea.setText("Food item deleted ^v^ !");
-        textArea.setPreferredSize(new Dimension(150,450));
-        textArea.setLineWrap(true);
+        try {
+            fd.deleteFoodItem(foodInputField.getText());
+            textArea.setText("Food item deleted ^v^ !");
+            textArea.setPreferredSize(new Dimension(150,350));
+            textArea.setLineWrap(true);
+        } catch (Exception e) {
+            textArea.setText("cannot find this item in food diary");
+        }
+
+        deLabel = new JLabel();
+        deLabel.setIcon(new ImageIcon("data/delete.jpeg"));
+        deLabel.setPreferredSize(new Dimension(150, 150));
+        addRightPanel.add(deLabel);
+        deLabel.setVisible(true);
     }
 
 
@@ -474,7 +493,7 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: display the food items in current food diary in the addRightPanel
     public void printDiary() {
 
-        textArea.setPreferredSize(new Dimension(150,450));
+        textArea.setPreferredSize(new Dimension(150,500));
         textArea.setBackground(new Color(255,204,229));
         textArea.setForeground(new Color(0,0,0));
         textArea.setEditable(false);
@@ -485,6 +504,9 @@ public class GUI extends JFrame implements ActionListener {
             textArea.setText("The food in your diary are:" + fd.printDiaryViewList());
             textArea.setDisabledTextColor(new Color(0,0,0));
             textArea.setSelectedTextColor(new Color(0,0,0));
+            //deLabel.setVisible(false);
+            //adLabel.setVisible(false);
+
         } catch (NullPointerException e) {
             textArea.setText("No food diary recorded");
             textArea.setDisabledTextColor(new Color(0,0,0));

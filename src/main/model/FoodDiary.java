@@ -48,12 +48,15 @@ public class FoodDiary implements Writable {
     //          only delete one food item at a time
     //Modifies: this
     // Effects: delete a food item from the diary
-    public void deleteFoodItem(String foodName) {
+    public void deleteFoodItem(String foodName) throws Exception {
         for (FoodItem foodItem : foodDiary) {
             if (foodName.equals(foodItem.getFoodName())) {
                 foodDiary.remove(foodItem);
                 break;
             }
+            Exception cannotFindException = new Exception();
+            throw cannotFindException;
+
         }
     }
 

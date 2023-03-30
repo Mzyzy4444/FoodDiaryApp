@@ -1,17 +1,21 @@
 {
     "food items": [
         {
-            "food type": "FRUIT",
-            "food name": "banana"
+            "food type": "VEGETABLE",
+            "food name": "veg"
         },
         {
-            "food type": "BEVERAGES",
-            "food name": "sprite"
+            "food type": "SNACKS",
+            "food name": "vsnac"
+        },
+        {
+            "food type": "SNACKS",
+            "food name": "vsnac"
         }
     ],
-    "sex": "male",
-    "weight": 1,
-    "userName": "m",
-    "age": 1,
-    "height": 1
+    "sex": "female",
+    "weight": 51,
+    "userName": "Zoey",
+    "age": 18,
+    "height": 171
 }

@@ -226,7 +226,11 @@ public class FoodDiaryApp {
     private void deleteItem() {
         System.out.println("Please enter the food you want to delete: ");
         String deleteName = input.next() + input.nextLine();
-        foodDiary.deleteFoodItem(deleteName);
+        try {
+            foodDiary.deleteFoodItem(deleteName);
+        } catch (Exception e) {
+            System.out.println("can't find this item in doof diary");
+        }
     }
 
     //EFFECTS: print out the ideal calories intake
