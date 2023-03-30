@@ -12,6 +12,7 @@ import persistence.JsonWriter;
 
 //Represents a food diary, with records of foods eaten every day
 public class FoodDiary implements Writable {
+    @SuppressWarnings({"checkstyle:VisibilityModifier", "checkstyle:SuppressWarnings"})
     public ArrayList<FoodItem> foodDiary;
     private int weight;
     private int height;

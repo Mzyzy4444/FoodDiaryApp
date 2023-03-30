@@ -26,7 +26,9 @@
 
 ## Instructions for Grader
 - You can locate my visual component at the first panel showed up in this app, where I added a logo for my foodie diary
-draw by myself. You can also find another visual components at the menu panel where again shows the logo. I also used border
+draw by myself. You can also find another visual components at the menu panel where again shows the logo. Also, there are 
+different pictures displayed every time you click "add to my diary" and "delete this food item" as well.
+I also used border
 at the input info panel where I surround each text field with titled boarder. 
 - You can choose whether to load from the history foodie diary at the beginning of this application. If you choose "yes", it will load from the history data. 
 If you choose "no", you can input your personal information to generate a newly customized foodie diary.

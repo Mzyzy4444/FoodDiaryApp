@@ -168,7 +168,7 @@ public class GUI extends JFrame implements ActionListener {
     public void makeMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(229, 204, 255));
-        menuPanel.setPreferredSize(new Dimension(500,500));
+        menuPanel.setPreferredSize(new Dimension(500, 500));
 
         nameLabel = new JLabel();
         nameLabel.setText("Fit-Foodie");
@@ -192,7 +192,7 @@ public class GUI extends JFrame implements ActionListener {
     public void makeAddPanel() {
         addLeftPanel = new JPanel();
         addLeftPanel.setBackground(new Color(204, 229, 255));
-        addLeftPanel.setPreferredSize(new Dimension(350,500));
+        addLeftPanel.setPreferredSize(new Dimension(350, 500));
         addRightPanel = new JPanel();
         addRightPanel.setBackground(new Color(210, 204, 255));
         addRightPanel.setPreferredSize(new Dimension(150, 500));
@@ -301,7 +301,6 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
-
     // MODIFIES: fd
     // EFFECTS: input user info to the newly-constructed food diary and save new user info to json;
     public void setInfo() {
@@ -327,9 +326,9 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
-
     // MODIFIES: this
     // EFFECTS: initialize the panel that displays the load option
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void initializeLoadPanel() {
         loadPanel = new JPanel();
         loadPanel.setBackground(new Color(229, 255, 204));
@@ -443,7 +442,7 @@ public class GUI extends JFrame implements ActionListener {
         foodItem = new FoodItem(foodInputField.getText(), foodType);
         fd.addFoodItem(foodItem);
         textArea.setText("Food item added ^v^ !");
-        textArea.setPreferredSize(new Dimension(150,350));
+        textArea.setPreferredSize(new Dimension(150, 350));
         textArea.setLineWrap(true);
 
         adLabel = new JLabel();
@@ -468,10 +467,10 @@ public class GUI extends JFrame implements ActionListener {
 //        } else {
 //            textArea.setText("cannot find this item in food diary");
 //        }
-            fd.deleteFoodItem(foodInputField.getText());
-            textArea.setText("Food item deleted ^v^ !");
-            textArea.setPreferredSize(new Dimension(150,350));
-            textArea.setLineWrap(true);
+        fd.deleteFoodItem(foodInputField.getText());
+        textArea.setText("Food item deleted ^v^ !");
+        textArea.setPreferredSize(new Dimension(150, 350));
+        textArea.setLineWrap(true);
 
         deLabel = new JLabel();
         deLabel.setIcon(new ImageIcon("data/delete.jpeg"));
@@ -500,24 +499,24 @@ public class GUI extends JFrame implements ActionListener {
     // EFFECTS: display the food items in current food diary in the addRightPanel
     public void printDiary() {
 
-        textArea.setPreferredSize(new Dimension(150,500));
-        textArea.setBackground(new Color(255,204,229));
-        textArea.setForeground(new Color(0,0,0));
+        textArea.setPreferredSize(new Dimension(150, 500));
+        textArea.setBackground(new Color(255, 204, 229));
+        textArea.setForeground(new Color(0, 0, 0));
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         //textArea.setBorder(BorderFactory.createMatteBorder(-1,-1,-1,-1,new ImageIcon("data/waveline.gif")));
         pack();
         try {
             textArea.setText("The food in your diary are:" + fd.printDiaryViewList());
-            textArea.setDisabledTextColor(new Color(0,0,0));
-            textArea.setSelectedTextColor(new Color(0,0,0));
+            textArea.setDisabledTextColor(new Color(0, 0, 0));
+            textArea.setSelectedTextColor(new Color(0, 0, 0));
             //deLabel.setVisible(false);
             //adLabel.setVisible(false);
 
         } catch (NullPointerException e) {
             textArea.setText("No food diary recorded");
-            textArea.setDisabledTextColor(new Color(0,0,0));
-            textArea.setSelectedTextColor(new Color(0,0,0));
+            textArea.setDisabledTextColor(new Color(0, 0, 0));
+            textArea.setSelectedTextColor(new Color(0, 0, 0));
         }
 
     }
