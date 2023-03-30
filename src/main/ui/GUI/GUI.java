@@ -452,8 +452,10 @@ public class GUI extends JFrame implements ActionListener {
         addRightPanel.add(adLabel);
         adLabel.setVisible(true);
 
+
     }
 
+    //EFGECTS: delete the food item from food diary
     public void deleteFoodItem() {
         foodType = getType((String) typeBox.getSelectedItem());
         foodItem = new FoodItem(foodInputField.getText(), foodType);
