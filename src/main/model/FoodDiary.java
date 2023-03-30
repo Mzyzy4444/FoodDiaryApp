@@ -12,7 +12,7 @@ import persistence.JsonWriter;
 
 //Represents a food diary, with records of foods eaten every day
 public class FoodDiary implements Writable {
-    private ArrayList<FoodItem> foodDiary;
+    public ArrayList<FoodItem> foodDiary;
     private int weight;
     private int height;
     private int age;
@@ -24,7 +24,7 @@ public class FoodDiary implements Writable {
     Effect: creates an empty diary with userName given
      */
     public FoodDiary(String userName, int weight, int height, int age, String sex) {
-        foodDiary = new ArrayList<FoodItem>();
+        foodDiary = new ArrayList<>();
         this.userName = userName;
         this.weight = weight;
         this.height = height;
@@ -48,15 +48,23 @@ public class FoodDiary implements Writable {
     //          only delete one food item at a time
     //Modifies: this
     // Effects: delete a food item from the diary
-    public void deleteFoodItem(String foodName) throws Exception {
+    public void deleteFoodItem(String foodName) {
         for (FoodItem foodItem : foodDiary) {
             if (foodName.equals(foodItem.getFoodName())) {
                 foodDiary.remove(foodItem);
                 break;
             }
-            Exception cannotFindException = new Exception();
-            throw cannotFindException;
+        }
+    }
 
+    // EFFECTS: returns false and removes the given fooditem if it is in list,
+    //          else return true
+    public boolean delete(FoodItem foodItem) {
+        if (foodDiary.contains(foodItem)) {
+            foodDiary.remove(foodItem);
+            return true;
+        } else {
+            return false;
         }
     }
 

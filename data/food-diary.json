@@ -1,16 +1,20 @@
 {
     "food items": [
         {
-            "food type": "VEGETABLE",
-            "food name": "veg"
-        },
-        {
             "food type": "SNACKS",
             "food name": "vsnac"
         },
         {
-            "food type": "SNACKS",
-            "food name": "vsnac"
+            "food type": "FRUIT",
+            "food name": "ii"
+        },
+        {
+            "food type": "FRUIT",
+            "food name": "hh"
+        },
+        {
+            "food type": "FRUIT",
+            "food name": "uu"
         }
     ],
     "sex": "female",

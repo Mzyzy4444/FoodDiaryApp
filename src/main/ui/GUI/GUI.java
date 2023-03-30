@@ -457,14 +457,19 @@ public class GUI extends JFrame implements ActionListener {
     public void deleteFoodItem() {
         foodType = getType((String) typeBox.getSelectedItem());
         foodItem = new FoodItem(foodInputField.getText(), foodType);
-        try {
+//        if (fd.foodDiary.contains(foodItem)) {
+//            fd.foodDiary.remove(foodItem);
+//            textArea.setText("Food item deleted ^v^ !");
+//            textArea.setPreferredSize(new Dimension(150, 350));
+//            textArea.setLineWrap(true);
+//
+//        } else {
+//            textArea.setText("cannot find this item in food diary");
+//        }
             fd.deleteFoodItem(foodInputField.getText());
             textArea.setText("Food item deleted ^v^ !");
             textArea.setPreferredSize(new Dimension(150,350));
             textArea.setLineWrap(true);
-        } catch (Exception e) {
-            textArea.setText("cannot find this item in food diary");
-        }
 
         deLabel = new JLabel();
         deLabel.setIcon(new ImageIcon("data/delete.jpeg"));

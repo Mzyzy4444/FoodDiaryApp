@@ -59,12 +59,8 @@ public class FoodDiaryTest {
     public void testDeleteFoodItem() {
         fdSkye.addFoodItem(apple);
         assertEquals(1, fdSkye.getSize());
-        try {
-            fdSkye.deleteFoodItem("Apple");
+        fdSkye.deleteFoodItem("Apple");
 
-        } catch (Exception e) {
-            fail();
-        }
     }
 
 
@@ -72,22 +68,16 @@ public class FoodDiaryTest {
     public void testDeleteFoodItemNotInDiary() {
         fdSkye.addFoodItem(apple);
         assertEquals(1, fdSkye.getSize());
-        try {
             fdSkye.deleteFoodItem("Prange");
-            fail();
-        } catch (Exception e) {
             assertEquals(1, fdSkye.getSize());
-        }
     }
 
     @Test
     public void testDeleteFoodItemEmpty() {
         assertEquals(0, fdSkye.getSize());
-        try {
             fdSkye.deleteFoodItem("Apple");
-        } catch (Exception e) {
             assertEquals(0, fdSkye.getSize());
-        }
+
     }
 
     @Test
