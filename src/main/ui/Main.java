@@ -1,6 +1,6 @@
 package ui;
 
-import ui.GUI.GUI;
+import ui.gui.GUI;
 
 import java.io.FileNotFoundException;
 
