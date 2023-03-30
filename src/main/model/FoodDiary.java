@@ -58,18 +58,6 @@ public class FoodDiary implements Writable {
         }
     }
 
-    // EFFECTS: returns false and removes the given fooditem if it is in list,
-    //          else return true
-    public boolean delete(FoodItem foodItem) {
-        if (foodDiary.contains(foodItem)) {
-            foodDiary.remove(foodItem);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
     // EFFECTS: print out all the food items in the current diary
     public List<String> printDiaryViewList() {
         List<String> viewList = new ArrayList<String>();
