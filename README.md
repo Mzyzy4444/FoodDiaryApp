@@ -46,5 +46,23 @@ that means your food item has been added to the diary.
 on the panel you were directed to in the last step. You can see what's in your foodie diary 
 on the right-hand side of the panel. 
 - You can save the state of my application by clicking "save current foodie diary" button on the main menu panel. However, if you choose not to load from history
-data at the begining, the information you input will be saved automatically; but you can decided whether to save your food items by choosing to click the save button. 
+data at the beginning, the information you input will be saved automatically; but you can decided whether to save your food items by choosing to click the save button. 
 
+## Phase 4: Task 2
+Sat Apr 01 21:15:56 PDT 2023
+created new food diary with given info: userName = null, weight = 0kg, height = cm, age = 0, gender (physical) = null
+
+Sat Apr 01 21:16:10 PDT 2023
+created new food diary with given info: userName = Zoey, weight = 50kg, height = cm, age = 18, gender (physical) = female
+
+Sat Apr 01 21:16:14 PDT 2023
+Added food item: banana
+
+Sat Apr 01 21:16:22 PDT 2023
+Added food item: chicken
+
+Sat Apr 01 21:16:29 PDT 2023
+Added food item: chocolate
+
+Sat Apr 01 21:16:32 PDT 2023
+deleted food item: chocolate

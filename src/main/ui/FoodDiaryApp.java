@@ -27,7 +27,7 @@ public class FoodDiaryApp {
     //EFFECTS : runs the food diary app
     public FoodDiaryApp() throws FileNotFoundException {
         input = new Scanner(System.in);
-        foodDiary = new FoodDiary("Zoey", weight, height, age, sex);
+        //foodDiary = new FoodDiary("Zoey", weight, height, age, sex);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runFoodDiaryApp();

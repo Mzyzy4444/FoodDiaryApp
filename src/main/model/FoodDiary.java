@@ -31,6 +31,10 @@ public class FoodDiary implements Writable {
         this.height = height;
         this.age = age;
         this.sex = sex;
+        EventLog.getInstance().logEvent(new Event("created new food diary with given info: "
+                + "userName = " + userName + ", weight = " + weight + "kg, height = "
+                + "cm, age = " + age + ", gender (physical) = " + sex));
+
 
     }
 
@@ -38,6 +42,7 @@ public class FoodDiary implements Writable {
     // Effects: add a given food item to the diary
     public void addFoodItem(FoodItem foodItem) {
         foodDiary.add(foodItem);
+        EventLog.getInstance().logEvent(new Event("Added food item: " + foodItem.getFoodName()));
     }
 
     // EFFECTS: returns an unmodifiable list of thingies in this food items
@@ -53,6 +58,7 @@ public class FoodDiary implements Writable {
         for (FoodItem foodItem : foodDiary) {
             if (foodName.equals(foodItem.getFoodName())) {
                 foodDiary.remove(foodItem);
+                EventLog.getInstance().logEvent(new Event("deleted food item: " + foodItem.getFoodName()));
                 break;
             }
         }
@@ -155,5 +161,15 @@ public class FoodDiary implements Writable {
         }
 
         return jsonArray;
+    }
+
+    public void printLog(EventLog eventLog) {
+        for (Event e : eventLog) {
+            System.out.println(e.toString() + "\n");
+        }
+    }
+
+    public void printEvent() {
+        printLog(EventLog.getInstance());
     }
 }

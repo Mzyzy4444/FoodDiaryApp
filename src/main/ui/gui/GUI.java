@@ -36,6 +36,7 @@ public class GUI extends JFrame implements ActionListener {
     private JButton viewButton;
     private JButton addFoodButton;
     private JButton deleteButton;
+    private JButton exitButton;
 
     private JButton add2Button;
 
@@ -100,10 +101,13 @@ public class GUI extends JFrame implements ActionListener {
         // In the menu panel
         addButton = new JButton("record food items");
         saveButton = new JButton("save current foodie diary");
+        exitButton = new JButton("quit app");
         addButton.setAlignmentX(CENTER_ALIGNMENT);
         saveButton.setAlignmentX(CENTER_ALIGNMENT);
+        exitButton.setAlignmentX(CENTER_ALIGNMENT);
         addButton(addButton, menuPanel);
         addButton(saveButton, menuPanel);
+        addButton(exitButton,menuPanel);
 
         //In the addLeftPanel
         viewButton = new JButton("view current foodie diary");
@@ -141,6 +145,8 @@ public class GUI extends JFrame implements ActionListener {
         addButton.setActionCommand("record");
         saveButton.addActionListener(this);
         saveButton.setActionCommand("save");
+        exitButton.addActionListener(this);
+        exitButton.setActionCommand("quit app");
 
         viewButton.addActionListener(this);
         viewButton.setActionCommand("view");
@@ -209,16 +215,13 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     @Override
     // EFFECTS: calls the given methods when a certain button is clicked on
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Input new info")) {
-            //makeMenuPanel();
             add(menuPanel);
-            //pack();
             initializeInputPanel();
-
-            //initializeMenuPanel();
         } else if (e.getActionCommand().equals("Load")) {
             loadData();
             add(menuPanel);
@@ -233,20 +236,18 @@ public class GUI extends JFrame implements ActionListener {
         } else if (e.getActionCommand().equals("add to my diary")) {
             addFoodItem();
         } else if (e.getActionCommand().equals("return to main menu")) {
-//            menuPanel.setPreferredSize(new Dimension(500,500));
-//            menuPanel.setVisible(true);
-//            addLeftPanel.setVisible(false);
-//            addRightPanel.setVisible(false);
-//            loadPanel.setVisible(false);
-//            inputPanel.setVisible(false);
             initializeMenuPanel();
         } else if (e.getActionCommand().equals("add new info to json")) {
             setInfo();
             initializeAddPanel();
         } else if (e.getActionCommand().equals("remove this food item")) {
             deleteFoodItem();
+        } else if (e.getActionCommand().equals("quit app")) {
+            fd.printEvent();
+            System.exit(0);
         }
     }
+
 
     // MODIFIES: this
     // EFFECTS: initialize input panel;
@@ -454,7 +455,7 @@ public class GUI extends JFrame implements ActionListener {
 
     }
 
-    //EFGECTS: delete the food item from food diary
+    //EFFECTS: delete the food item from food diary
     public void deleteFoodItem() {
         foodType = getType((String) typeBox.getSelectedItem());
         foodItem = new FoodItem(foodInputField.getText(), foodType);
