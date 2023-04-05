@@ -1,17 +1,17 @@
 {
     "food items": [
         {
-            "food type": "FRUIT",
-            "food name": "banana"
-        },
-        {
             "food type": "MEAT",
             "food name": "chicken"
+        },
+        {
+            "food type": "FRUIT",
+            "food name": "uu"
         }
     ],
     "sex": "female",
-    "weight": 50,
+    "weight": 1,
     "userName": "Zoey",
-    "age": 18,
-    "height": 171
+    "age": 1,
+    "height": 1
 }

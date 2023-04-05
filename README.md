@@ -66,3 +66,13 @@ Added food item: chocolate
 
 Sat Apr 01 21:16:32 PDT 2023
 deleted food item: chocolate
+
+## Phase 4: Task 3 Reflection
+- One refactoring I can improve on my project is that instead of have a big block of code in a single 
+GUI class, I could separate it into different classes based on the panels. As what we learnt in class about the
+  Single Responsibility Principle, each panel could have been a 
+class, and since all of them used similar methods during the setup stage. I could make a panelSetup interface and
+let all the panel classes implements that. 
+- Another thing that I can improve with my project is that instead of using ArrayList to 
+represent food diary, I could use a HashSet. Because I don't need to preserve the order in the 
+food diary and a HashSet would be easier to find a food item in the food diary. 
