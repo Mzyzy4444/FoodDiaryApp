@@ -53,7 +53,7 @@ Sat Apr 01 21:15:56 PDT 2023
 created new food diary with given info: userName = null, weight = 0kg, height = cm, age = 0, gender (physical) = null
 
 Sat Apr 01 21:16:10 PDT 2023
-created new food diary with given info: userName = Zoey, weight = 50kg, height = cm, age = 18, gender (physical) = female
+created new food diary with given info: userName = Zoey, weight = 50kg, height = 171cm, age = 18, gender (physical) = female
 
 Sat Apr 01 21:16:14 PDT 2023
 Added food item: banana
