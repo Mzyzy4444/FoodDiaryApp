@@ -133,6 +133,20 @@ public class FoodDiaryTest {
         assertEquals("female",fdJeffery.getSex());
     }
 
+    @Test
+    public void testPrintEvent() {
+        fdZoey.printEvent();
+    }
+
+    @Test
+    public void testPrintEventLog() {
+        fdZoey.printLog(EventLog.getInstance());
+    }
+
+
+
+
+
 
 
 
