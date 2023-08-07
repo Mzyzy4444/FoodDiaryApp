@@ -2,7 +2,7 @@
 
 ## Diet Tracker Application
 
-- This program is like a **food ledger**. It provides a platform for users to **record their everyday eating habits**, and they can use the built-in options to record the food they eat every day and its calories.
+- This program is a **food ledger**. It provides a platform for users to **record their everyday eating habits**, and they can use the built-in options to record the food they eat every day and its calories.
   This application **evaluates the user's nutritional intake for the day** based on the food intake entered by the user as well as the height and weight entered by the user. 
 
 
